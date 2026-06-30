@@ -6,6 +6,7 @@ const props = defineProps({
 	vendors: { type: Array, required: true },
 	priceMap: { type: Object, required: true },
 	pageSize: { type: Number, default: 25 },
+	vendorColors: { type: Array, default: () => [] },
 });
 
 const page = shallowRef(1);
@@ -45,7 +46,12 @@ const lowestPriceMap = computed(() => {
 			<thead>
 				<tr>
 					<th class="col-product">Product</th>
-					<th v-for="v in vendors" :key="v" class="col-vendor">
+					<th
+						v-for="(v, i) in vendors"
+						:key="v"
+						class="col-vendor"
+						:style="vendorColors[i] ? { color: vendorColors[i] } : {}"
+					>
 						{{ v.replace(/_/g, ' ') }}
 					</th>
 				</tr>
@@ -57,7 +63,9 @@ const lowestPriceMap = computed(() => {
 					</td>
 				</tr>
 				<tr v-for="row in pageRows" :key="row.key">
-					<td class="col-product">{{ row.product_name }}</td>
+					<td class="col-product">
+						{{ row.product_name }} <span class="col-mg">{{ row.mg }}</span>
+					</td>
 					<td
 						v-for="v in vendors"
 						:key="v"
@@ -69,8 +77,13 @@ const lowestPriceMap = computed(() => {
 						}"
 					>
 						<template v-if="priceMap[v]?.[row.key] != null">
-							${{ priceMap[v][row.key].price.toFixed(2) }}
-							<span class="spec">/ {{ priceMap[v][row.key].spec }}</span>
+							<span class="price-wrap">
+								${{ priceMap[v][row.key].price.toFixed(2) }}
+								<span class="tooltip"
+									>{{ priceMap[v][row.key].mg }} ×
+									{{ priceMap[v][row.key].vials }} vials</span
+								>
+							</span>
 						</template>
 						<span v-else class="na">N/A</span>
 					</td>
@@ -103,77 +116,153 @@ const lowestPriceMap = computed(() => {
 .table-wrap {
 	overflow-x: auto;
 	flex: 1;
+	scrollbar-color: var(--border) transparent;
+	scrollbar-width: thin;
 }
 
 table {
 	width: 100%;
-	border-collapse: collapse;
+	border-collapse: separate;
+	border-spacing: 0;
 	font-size: 0.85rem;
 	white-space: nowrap;
+	min-height: 10rem;
 }
 
 thead {
 	position: sticky;
 	top: 0;
 	z-index: 2;
-	background: var(--surface);
 }
 
 th {
-	padding: 0.65rem 1rem;
+	padding: 0.75rem 1.25rem;
 	text-align: left;
-	font-size: 0.75rem;
-	font-weight: 600;
+	font-size: 0.7rem;
+	font-weight: 700;
 	text-transform: uppercase;
-	letter-spacing: 0.05em;
+	letter-spacing: 0.08em;
 	color: var(--text-muted);
-	border-bottom: 1px solid var(--border);
+	background: var(--surface2);
+	border-bottom: 2px solid var(--border);
+
+	&:first-child { border-radius: 0; }
 
 	&.col-vendor {
 		text-align: right;
 	}
 }
 
+tbody tr {
+	transition: background 0.12s;
+
+	&:hover td {
+		background: color-mix(in srgb, var(--teal) 5%, var(--surface));
+	}
+
+	&:nth-child(even) td {
+		background: var(--surface2);
+	}
+
+	&:hover:nth-child(even) td {
+		background: color-mix(in srgb, var(--teal) 5%, var(--surface2));
+	}
+
+	&:last-child td {
+		border-bottom: none;
+	}
+}
+
 td {
-	padding: 0.55rem 1rem;
+	padding: 0.65rem 1.25rem;
 	border-bottom: 1px solid var(--border);
 	color: var(--text);
+	transition: background 0.12s;
 
 	&.col-product {
 		font-weight: 500;
+		font-size: 0.88rem;
+
+		.col-mg {
+			display: inline-block;
+			font-size: 0.68rem;
+			color: var(--bg);
+			background: var(--teal);
+			font-weight: 600;
+			margin-left: 0.5rem;
+			padding: 0.05rem 0.4rem;
+			border-radius: 999px;
+			vertical-align: middle;
+			opacity: 0.85;
+		}
 	}
+
 	&.col-price {
 		text-align: right;
 		font-family: 'IBM Plex Mono', monospace;
+		font-size: 0.82rem;
+		letter-spacing: -0.01em;
+	}
 
-		.spec {
-			font-size: 0.75rem;
-			color: var(--text-muted);
-			font-family: inherit;
+	&.best {
+		color: #5db87a;
+		font-weight: 700;
+		font-size: 0.86rem;
+	}
+
+	[data-theme='light'] &.best {
+		color: #3a7d52;
+	}
+}
+
+.price-wrap {
+	position: relative;
+	display: inline-block;
+
+	.tooltip {
+		display: none;
+		position: absolute;
+		bottom: calc(100% + 8px);
+		right: 0;
+		background: var(--surface);
+		border: 1px solid var(--border);
+		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+		color: var(--text);
+		font-size: 0.72rem;
+		font-family: inherit;
+		font-weight: 400;
+		white-space: nowrap;
+		padding: 0.35rem 0.7rem;
+		border-radius: 6px;
+		pointer-events: none;
+		z-index: 10;
+
+		&::after {
+			content: '';
+			position: absolute;
+			top: 100%;
+			right: 0.7rem;
+			border: 5px solid transparent;
+			border-top-color: var(--border);
 		}
 	}
-	&.best {
-		color: var(--teal);
-		font-weight: 600;
+
+	&:hover .tooltip {
+		display: block;
 	}
 }
 
 .na {
 	color: var(--border);
-}
-
-.text-muted {
-	color: var(--text-muted);
+	font-size: 0.78rem;
+	font-style: italic;
 }
 
 .empty {
 	text-align: center;
-	padding: 3rem;
+	padding: 4rem;
 	color: var(--text-muted);
-}
-
-tr:hover td {
-	background: var(--surface);
+	font-size: 0.88rem;
 }
 
 // ── Pagination ────────────────────────────────────────────────────
@@ -181,40 +270,47 @@ tr:hover td {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 0.75rem 1.5rem;
-	border-top: 1px solid var(--border);
-	background: var(--surface);
+	padding: 0.85rem 1.5rem;
+	border-top: 2px solid var(--border);
+	background: var(--surface2);
 	font-size: 0.8rem;
 	color: var(--text-muted);
 }
 
 .page-controls {
 	display: flex;
-	gap: 0.25rem;
+	gap: 0.3rem;
 
 	button {
-		min-width: 2rem;
-		padding: 0.25rem 0.5rem;
-		background: var(--surface2);
+		min-width: 2.1rem;
+		height: 2.1rem;
+		padding: 0 0.5rem;
+		background: var(--surface);
 		border: 1px solid var(--border);
-		border-radius: 4px;
+		border-radius: 6px;
 		color: var(--text);
 		cursor: pointer;
 		font-size: 0.8rem;
-		transition: border-color 0.15s;
+		font-weight: 500;
+		transition: border-color 0.15s, background 0.15s, color 0.15s, box-shadow 0.15s;
 
 		&:hover:not(:disabled) {
-			border-color: var(--teal-dim);
+			border-color: var(--highlight);
+			color: var(--highlight);
+			box-shadow: 0 0 0 2px var(--highlight-glow);
 		}
+
 		&:disabled {
-			opacity: 0.35;
+			opacity: 0.3;
 			cursor: default;
 		}
+
 		&.current {
-			background: var(--teal);
-			border-color: var(--teal);
-			color: #0d1117;
-			font-weight: 600;
+			background: var(--highlight);
+			border-color: var(--highlight);
+			color: #fff;
+			font-weight: 700;
+			box-shadow: 0 2px 8px var(--highlight-glow);
 		}
 	}
 }

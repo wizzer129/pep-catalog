@@ -14,12 +14,22 @@
 @sans-bold: 'Inter Bold', sans-serif;
 
 // ── Light overrides ───────────────────────────────────────────────
-@bg-light: #f4f6f8;
-@surface-light: #ffffff;
-@surface2-light: #eaecef;
-@border-light: #d0d7de;
-@text-light: #1c2128;
-@text-muted-light: #57606a;
+@bg-light: #e8e0d5;
+@surface-light: #f0e9df;
+@surface2-light: #d9cfc4;
+@border-light: #c4b8a8;
+@text-light: #2e2720;
+@text-muted-light: #6b5f52;
+
+// accent palette for light theme
+@accent-light: #3a6b4a; // forest green (replaces teal)
+@accent-dim-light: #2d5239; // darker forest green
+@amber-light: #b36a1a; // deeper amber/rust
+@red-light: #b83232; // deeper red
+@purple-light: #6b4fa8; // muted violet accent
+
+// ── Light selection accent ────────────────────────────────────────
+@highlight-light: #f26c1a;
 
 // ── CSS custom properties (dark default) ─────────────────────────
 :root {
@@ -31,8 +41,11 @@
 	--teal-dim: @teal-dim;
 	--amber: @amber;
 	--red: @red;
+	--purple: #9b7fd4;
 	--text: @text;
 	--text-muted: @text-muted;
+	--highlight: @teal;
+	--highlight-glow: fade(@teal, 18%);
 }
 
 // ── Light theme ───────────────────────────────────────────────────
@@ -41,8 +54,15 @@
 	--surface: @surface-light;
 	--surface2: @surface2-light;
 	--border: @border-light;
+	--teal: @accent-light;
+	--teal-dim: @accent-dim-light;
+	--amber: @amber-light;
+	--red: @red-light;
+	--purple: @purple-light;
 	--text: @text-light;
 	--text-muted: @text-muted-light;
+	--highlight: @highlight-light;
+	--highlight-glow: fade(@highlight-light, 22%);
 }
 
 @media (prefers-color-scheme: light) {
@@ -51,8 +71,15 @@
 		--surface: @surface-light;
 		--surface2: @surface2-light;
 		--border: @border-light;
+		--teal: @accent-light;
+		--teal-dim: @accent-dim-light;
+		--amber: @amber-light;
+		--red: @red-light;
+		--purple: @purple-light;
 		--text: @text-light;
 		--text-muted: @text-muted-light;
+		--highlight: @highlight-light;
+		--highlight-glow: fade(@highlight-light, 22%);
 	}
 }
 

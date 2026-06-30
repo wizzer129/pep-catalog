@@ -20,20 +20,25 @@ export const useCatalogStore = defineStore('catalog', () => {
 	}
 
 	// Ordered list of vendor keys
-	const vendorKeys = computed(() => Object.keys(suppliers.value));
+	const vendorKeys = computed(() => Object.keys(suppliers.value).sort((a, b) => a.localeCompare(b)));
 
-	// Unique product names, sorted alphabetically. Row key === product_name.
+	// Unique product+mg combinations, sorted alphabetically. Row key === "product_name mg".
 	const productRows = computed(() => {
-		const names = new Set();
+		const seen = new Set();
+		const rows = [];
 		for (const vendor of Object.values(suppliers.value)) {
 			for (const p of vendor.products) {
-				names.add(p.product_name);
+				const key = `${p.product_name} ${p.mg}`;
+				if (!seen.has(key)) {
+					seen.add(key);
+					rows.push({ key, product_name: p.product_name, mg: p.mg });
+				}
 			}
 		}
-		return [...names].sort((a, b) => a.localeCompare(b)).map((name) => ({ key: name, product_name: name }));
+		return rows.sort((a, b) => a.key.localeCompare(b.key));
 	});
 
-	// priceMap[vendorKey][productName] = { price, spec } for the lowest retail price offered
+	// priceMap[vendorKey]["product_name mg"] = { price, mg, vials } for the lowest retail price offered
 	const priceMap = computed(() => {
 		const map = {};
 		for (const [vKey, vendor] of Object.entries(suppliers.value)) {
@@ -43,9 +48,10 @@ export const useCatalogStore = defineStore('catalog', () => {
 				// price_per_kit is sometimes { retail, wholesale } instead of a plain number
 				const price = Number(typeof raw === 'object' && raw !== null ? raw.retail : raw);
 				if (isNaN(price)) continue;
-				const existing = map[vKey][p.product_name];
+				const key = `${p.product_name} ${p.mg}`;
+				const existing = map[vKey][key];
 				if (existing === undefined || price < existing.price) {
-					map[vKey][p.product_name] = { price, spec: p.specification };
+					map[vKey][key] = { price, mg: p.mg, vials: p.vials };
 				}
 			}
 		}
