@@ -1,0 +1,80 @@
+// ── Design tokens ────────────────────────────────────────────────
+@bg: #0d1117;
+@surface: #161b22;
+@surface2: #1e2530;
+@border: #2d3748;
+@teal: #00d4b8;
+@teal-dim: #00a896;
+@amber: #f5a623;
+@red: #ff4f4f;
+@text: #e6edf3;
+@text-muted: #8b949e;
+@mono: 'IBM Plex Mono', monospace;
+@sans: 'Inter', sans-serif;
+@sans-bold: 'Inter Bold', sans-serif;
+
+// ── Light overrides ───────────────────────────────────────────────
+@bg-light: #f4f6f8;
+@surface-light: #ffffff;
+@surface2-light: #eaecef;
+@border-light: #d0d7de;
+@text-light: #1c2128;
+@text-muted-light: #57606a;
+
+// ── CSS custom properties (dark default) ─────────────────────────
+:root {
+	--bg: @bg;
+	--surface: @surface;
+	--surface2: @surface2;
+	--border: @border;
+	--teal: @teal;
+	--teal-dim: @teal-dim;
+	--amber: @amber;
+	--red: @red;
+	--text: @text;
+	--text-muted: @text-muted;
+}
+
+// ── Light theme ───────────────────────────────────────────────────
+[data-theme='light'] {
+	--bg: @bg-light;
+	--surface: @surface-light;
+	--surface2: @surface2-light;
+	--border: @border-light;
+	--text: @text-light;
+	--text-muted: @text-muted-light;
+}
+
+@media (prefers-color-scheme: light) {
+	:root:not([data-theme='dark']) {
+		--bg: @bg-light;
+		--surface: @surface-light;
+		--surface2: @surface2-light;
+		--border: @border-light;
+		--text: @text-light;
+		--text-muted: @text-muted-light;
+	}
+}
+
+// ── Base styles ───────────────────────────────────────────────────
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+}
+
+body {
+	min-height: 100vh;
+	background: var(--bg);
+	color: var(--text);
+	font-family: @sans;
+	font-size: 15px;
+	line-height: 1.6;
+	transition:
+		background-color 0.3s,
+		color 0.3s;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
