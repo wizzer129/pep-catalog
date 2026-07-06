@@ -8,8 +8,14 @@ const props = defineProps({
 });
 
 const CHIP_COLORS = [
-	'#a67de8', '#6b9fff', '#f5a030', '#4dbf7a',
-	'#36c5e8', '#ff6b6b', '#d46bd4', '#5b9bd5',
+	'#a67de8',
+	'#6b9fff',
+	'#f5a030',
+	'#4dbf7a',
+	'#36c5e8',
+	'#ff6b6b',
+	'#d46bd4',
+	'#5b9bd5',
 ];
 
 function chipBg(name) {
@@ -36,7 +42,9 @@ function remove(name) {
 }
 
 function onBlur() {
-	setTimeout(() => { open.value = false; }, 150);
+	setTimeout(() => {
+		open.value = false;
+	}, 150);
 }
 </script>
 
@@ -63,11 +71,7 @@ function onBlur() {
 			</div>
 
 			<ul v-if="open && suggestions.length" class="dropdown">
-				<li
-					v-for="name in suggestions"
-					:key="name"
-					@mousedown.prevent="pick(name)"
-				>
+				<li v-for="name in suggestions" :key="name" @mousedown.prevent="pick(name)">
 					{{ name }}
 				</li>
 			</ul>
@@ -78,7 +82,6 @@ function onBlur() {
 <style scoped lang="less">
 .search-bar {
 	padding: 0.75rem 1.25rem;
-	border-bottom: 1px solid var(--border);
 	background: var(--bg);
 }
 
@@ -111,7 +114,9 @@ function onBlur() {
 		color: var(--text);
 		font-size: 0.875rem;
 
-		&::placeholder { color: var(--text-muted); }
+		&::placeholder {
+			color: var(--text-muted);
+		}
 	}
 }
 
@@ -129,7 +134,10 @@ function onBlur() {
 	white-space: nowrap;
 	opacity: 0.92;
 
-	&:hover { opacity: 1; filter: brightness(1.1); }
+	&:hover {
+		opacity: 1;
+		filter: brightness(1.1);
+	}
 }
 
 .dropdown {
@@ -153,7 +161,10 @@ function onBlur() {
 		color: var(--text);
 		cursor: pointer;
 
-		&:hover { background: var(--surface); color: var(--teal); }
+		&:hover {
+			background: var(--surface);
+			color: var(--teal);
+		}
 	}
 }
 </style>

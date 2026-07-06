@@ -18,7 +18,9 @@ watch(
 		// On first load: restore from localStorage, falling back to all selected
 		const saved = localStorage.getItem(STORAGE_KEY);
 		const initial = saved ? new Set(JSON.parse(saved)) : new Set(keys);
-		keys.forEach((k) => { if (initial.has(k)) selectedVendors.add(k); });
+		keys.forEach((k) => {
+			if (initial.has(k)) selectedVendors.add(k);
+		});
 	},
 	{ immediate: true },
 );
@@ -33,9 +35,16 @@ function toggleVendor(key) {
 }
 
 const VENDOR_COLORS = [
-	'#6b9fff', '#a67de8', '#f5a030', '#4dbf7a',
-	'#ff6b6b', '#36c5e8', '#cc8855', '#8bc34a',
-	'#d46bd4', '#5b9bd5',
+	'#6b9fff',
+	'#a67de8',
+	'#f5a030',
+	'#4dbf7a',
+	'#ff6b6b',
+	'#36c5e8',
+	'#cc8855',
+	'#8bc34a',
+	'#d46bd4',
+	'#5b9bd5',
 ];
 
 const activeVendors = computed(() => catalog.vendorKeys.filter((k) => selectedVendors.has(k)));
@@ -68,16 +77,26 @@ const filteredRows = computed(() => {
 	<div v-else-if="catalog.error" class="state-msg error">{{ catalog.error }}</div>
 
 	<template v-else>
-		<div class="catalog-card">
-			<VendorFilter
-				:vendors="catalog.vendorKeys"
-				:selected="selectedVendors"
-				@toggle="toggleVendor"
+		<div class="catalog-container">
+			<div class="catalog-card">
+				<VendorFilter
+					:vendors="catalog.vendorKeys"
+					:selected="selectedVendors"
+					@toggle="toggleVendor"
+				/>
+			</div>
+			<SearchBar
+				class="catalog-search-bar"
+				v-model="selectedProducts"
+				:options="productNames"
 			/>
-
-			<SearchBar v-model="selectedProducts" :options="productNames" />
-
-			<PriceTable :rows="filteredRows" :vendors="activeVendors" :price-map="catalog.priceMap" :vendor-colors="activeVendorColors" />
+			<PriceTable
+				:rows="filteredRows"
+				:vendors="activeVendors"
+				:price-map="catalog.priceMap"
+				:vendor-colors="activeVendorColors"
+				:page-size="11"
+			/>
 		</div>
 	</template>
 </template>
@@ -94,11 +113,24 @@ const filteredRows = computed(() => {
 	}
 }
 
+.catalog-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	align-items: center;
+	gap: 0.5rem;
+
+	.catalog-search-bar {
+		width: 100%;
+		min-width: 600px;
+	}
+}
+
 .catalog-card {
 	border: 1px solid var(--border);
 	border-radius: 12px;
 	overflow: hidden;
 	background: var(--bg);
-	margin: 1.5rem;
+	margin: 0rem;
 }
 </style>

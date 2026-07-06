@@ -62,8 +62,8 @@ const ICONS = {
 
 .vendors {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 1rem;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	gap: 0.75rem;
 
 	@media (max-width: 640px) {
 		grid-template-columns: 1fr;
@@ -74,7 +74,7 @@ const ICONS = {
 	background: var(--surface);
 	border: 1px solid var(--border);
 	border-radius: 8px;
-	padding: 1.25rem 1.5rem;
+	padding: 1.25rem 1em;
 }
 
 .name {

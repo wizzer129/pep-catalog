@@ -10,6 +10,21 @@ const props = defineProps({
 });
 
 const page = shallowRef(1);
+const sortDir = shallowRef(null); // null | 'asc' | 'desc'
+
+function cycleSort() {
+	sortDir.value = sortDir.value === 'asc' ? 'desc' : 'asc';
+	page.value = 1;
+}
+
+const sortedRows = computed(() => {
+	if (!sortDir.value) return props.rows;
+	return [...props.rows].sort((a, b) =>
+		sortDir.value === 'asc'
+			? a.key.localeCompare(b.key)
+			: b.key.localeCompare(a.key),
+	);
+});
 
 watch(
 	() => props.rows,
@@ -22,7 +37,7 @@ const totalPages = computed(() => Math.max(1, Math.ceil(props.rows.length / prop
 
 const pageRows = computed(() => {
 	const start = (page.value - 1) * props.pageSize;
-	return props.rows.slice(start, start + props.pageSize);
+	return sortedRows.value.slice(start, start + props.pageSize);
 });
 
 // Precompute lowest price per row key for "best price" highlighting.
@@ -45,7 +60,14 @@ const lowestPriceMap = computed(() => {
 		<table>
 			<thead>
 				<tr>
-					<th class="col-product">Product</th>
+					<th class="col-product">
+						Product
+						<button class="sort-btn" @click="cycleSort" :title="sortDir === 'asc' ? 'Sort Z→A' : 'Sort A→Z'">
+							<span v-if="sortDir === 'asc'">↑</span>
+							<span v-else-if="sortDir === 'desc'">↓</span>
+							<span v-else class="sort-idle">↕</span>
+						</button>
+					</th>
 					<th
 						v-for="(v, i) in vendors"
 						:key="v"
@@ -118,15 +140,17 @@ const lowestPriceMap = computed(() => {
 	flex: 1;
 	scrollbar-color: var(--border) transparent;
 	scrollbar-width: thin;
+	border-radius: 12px;
 }
 
 table {
-	width: 100%;
+	width: max-content;
+	max-width: 100%;
 	border-collapse: separate;
 	border-spacing: 0;
 	font-size: 0.85rem;
 	white-space: nowrap;
-	min-height: 10rem;
+	border-radius: 12px;
 }
 
 thead {
@@ -146,11 +170,37 @@ th {
 	background: var(--surface2);
 	border-bottom: 2px solid var(--border);
 
-	&:first-child { border-radius: 0; }
+	&:first-child {
+		border-radius: 0;
+	}
 
 	&.col-vendor {
 		text-align: right;
 	}
+}
+
+.sort-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: 0.4rem;
+	width: 18px;
+	height: 18px;
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: 4px;
+	color: var(--text-muted);
+	font-size: 0.7rem;
+	cursor: pointer;
+	vertical-align: middle;
+	transition: border-color 0.15s, color 0.15s;
+
+	&:hover {
+		border-color: var(--teal);
+		color: var(--teal);
+	}
+
+	.sort-idle { opacity: 0.45; }
 }
 
 tbody tr {
@@ -292,7 +342,11 @@ td {
 		cursor: pointer;
 		font-size: 0.8rem;
 		font-weight: 500;
-		transition: border-color 0.15s, background 0.15s, color 0.15s, box-shadow 0.15s;
+		transition:
+			border-color 0.15s,
+			background 0.15s,
+			color 0.15s,
+			box-shadow 0.15s;
 
 		&:hover:not(:disabled) {
 			border-color: var(--highlight);
