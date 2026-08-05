@@ -7,22 +7,6 @@ const props = defineProps({
 	options: { type: Array, required: true },
 });
 
-const CHIP_COLORS = [
-	'#a67de8',
-	'#6b9fff',
-	'#f5a030',
-	'#4dbf7a',
-	'#36c5e8',
-	'#ff6b6b',
-	'#d46bd4',
-	'#5b9bd5',
-];
-
-function chipBg(name) {
-	const idx = props.options.indexOf(name) % CHIP_COLORS.length;
-	return CHIP_COLORS[idx < 0 ? 0 : idx];
-}
-
 const query = shallowRef('');
 const open = shallowRef(false);
 
@@ -50,15 +34,10 @@ function onBlur() {
 
 <template>
 	<div class="search-bar">
+		<text>Search Peptides</text>
 		<div class="combobox" :class="{ open }">
 			<div class="input-row">
-				<button
-					v-for="name in selected"
-					:key="name"
-					class="chip"
-					:style="{ background: chipBg(name) }"
-					@click="remove(name)"
-				>
+				<button v-for="name in selected" :key="name" class="chip" @click="remove(name)">
 					{{ name }} ✕
 				</button>
 				<input
@@ -81,8 +60,7 @@ function onBlur() {
 
 <style scoped lang="less">
 .search-bar {
-	padding: 0.75rem 1.25rem;
-	background: var(--bg);
+	padding: 0.75rem 0rem;
 }
 
 .combobox {
@@ -124,18 +102,17 @@ function onBlur() {
 	display: inline-flex;
 	align-items: center;
 	gap: 0.3rem;
-	padding: 0.15rem 0.55rem;
-	color: #0d1117;
-	font-size: 0.72rem;
-	font-weight: 600;
+	padding: 0.25rem 0.7rem;
+	background: var(--teal);
+	color: #fff;
+	font-size: 0.8rem;
 	border: none;
 	border-radius: 999px;
 	cursor: pointer;
 	white-space: nowrap;
-	opacity: 0.92;
+	transition: filter 0.15s;
 
 	&:hover {
-		opacity: 1;
 		filter: brightness(1.1);
 	}
 }

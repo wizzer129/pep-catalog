@@ -1,12 +1,14 @@
 {
-	"Innopeptide": {
-		"name": "innopeptide",
+	"Innopeptide_China": {
+		"name": "Innopeptide (China)",
+		"region": "China",
 		"contact": {
 			"website": "https://innopeptide.com/",
 			"representative": "Loreler",
 			"whatsapp": "+1 (231) 392-1328",
 			"payment_methods": "Crypto and Wire",
-			"shipping_time": "10-15 Days"
+			"shipping_time": "10-15 Days",
+			"shipping_fee": 50
 		},
 		"products": [
 			{
@@ -891,13 +893,337 @@
 			}
 		]
 	},
+	"Innopeptide_US_A": {
+		"name": "Innopeptide US (A)",
+		"region": "US",
+		"contact": {
+			"website": "https://innopeptide.com/",
+			"representative": "Loreler",
+			"whatsapp": "+1 (231) 392-1328",
+			"payment_methods": "Crypto and Wire",
+			"shipping_time": "3-5 Days",
+			"shipping_fee": 40
+		},
+		"products": [
+			{
+				"product_name": "Tesamorelin",
+				"nick_name": "TSM10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 192.0,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Retatrutide",
+				"nick_name": "RT10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 130.0,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "KLOW (BPC-157 + GHK-Cu + TB-500 + KPV)",
+				"nick_name": "BBGK",
+				"specification": "80mg*10vials",
+				"price_per_kit": 216.0,
+				"mg": "80mg",
+				"vials": 10
+			},
+			{
+				"product_name": "GLOW (BPC-157 + GHK-Cu + TB-500)",
+				"nick_name": "BBG70",
+				"specification": "70mg*10vials",
+				"price_per_kit": 192.0,
+				"mg": "70mg",
+				"vials": 10
+			},
+			{
+				"product_name": "BPC-157",
+				"nick_name": "BC10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 72.0,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "KPV",
+				"nick_name": "KPV5",
+				"specification": "5mg*10vials",
+				"price_per_kit": 42.0,
+				"mg": "5mg",
+				"vials": 10
+			},
+			{
+				"product_name": "HCG",
+				"nick_name": "G5K",
+				"specification": "5000IU*10vials",
+				"price_per_kit": 90.0,
+				"mg": "5000IU",
+				"vials": 10
+			},
+			{
+				"product_name": "MOTS-c",
+				"nick_name": "MS10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 66.0,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "MOTS-c",
+				"nick_name": "MS40",
+				"specification": "40mg*10vials",
+				"price_per_kit": 228.0,
+				"mg": "40mg",
+				"vials": 10
+			},
+			{
+				"product_name": "BPC-157 + TB-500",
+				"nick_name": "BB10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 110.0,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Bacteriostatic Water",
+				"nick_name": "WA10",
+				"specification": "10ml*10vials",
+				"price_per_kit": 18.0,
+				"mg": "10ml",
+				"vials": 10
+			}
+		]
+	},
+	"Innopeptide_US_B": {
+		"name": "Innopeptide US (B)",
+		"region": "US",
+		"contact": {
+			"website": "https://innopeptide.com/",
+			"representative": "Loreler",
+			"whatsapp": "+1 (231) 392-1328",
+			"payment_methods": "Crypto and Wire",
+			"shipping_time": "3-5 Days",
+			"shipping_fee": 40
+		},
+		"products": [
+			{
+				"product_name": "GLOW (BPC-157 + GHK-Cu + TB-500)",
+				"nick_name": "BBG70",
+				"specification": "70mg*10vials",
+				"price_per_kit": 200.0,
+				"mg": "70mg",
+				"vials": 10
+			},
+			{
+				"product_name": "KLOW (BPC-157 + GHK-Cu + TB-500 + KPV)",
+				"nick_name": "BBGK",
+				"specification": "80mg*10vials",
+				"price_per_kit": 220.0,
+				"mg": "80mg",
+				"vials": 10
+			},
+			{
+				"product_name": "BPC-157 + TB-500",
+				"nick_name": "BB10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 110.0,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "BPC-157 + TB-500",
+				"nick_name": "BB20",
+				"specification": "20mg*10vials",
+				"price_per_kit": 170.0,
+				"mg": "20mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Selank",
+				"nick_name": "SK10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 70.0,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Semax",
+				"nick_name": "XA10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 70.0,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Tesamorelin",
+				"nick_name": "TSM10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 180.0,
+				"mg": "10mg",
+				"vials": 10
+			}
+		]
+	},
+	"Innopeptide_US_C": {
+		"name": "Innopeptide US (C)",
+		"region": "US",
+		"contact": {
+			"website": "https://innopeptide.com/",
+			"representative": "Loreler",
+			"whatsapp": "+1 (231) 392-1328",
+			"payment_methods": "Crypto and Wire",
+			"shipping_time": "3-5 Days",
+			"shipping_fee": 40
+		},
+		"products": [
+			{
+				"product_name": "BPC-157 + TB-500",
+				"nick_name": "BB10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 110.0,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "BPC-157 + TB-500",
+				"nick_name": "BB20",
+				"specification": "20mg*10vials",
+				"price_per_kit": 170.0,
+				"mg": "20mg",
+				"vials": 10
+			},
+			{
+				"product_name": "GLOW (BPC-157 + GHK-Cu + TB-500)",
+				"nick_name": "BBG70",
+				"specification": "70mg*10vials",
+				"price_per_kit": 200.0,
+				"mg": "70mg",
+				"vials": 10
+			},
+			{
+				"product_name": "KLOW (BPC-157 + GHK-Cu + TB-500 + KPV)",
+				"nick_name": "BBGK",
+				"specification": "80mg*10vials",
+				"price_per_kit": 220.0,
+				"mg": "80mg",
+				"vials": 10
+			},
+			{
+				"product_name": "BPC-157",
+				"nick_name": "BC10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 70.0,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "CJC-1295 (no DAC) + Ipamorelin",
+				"nick_name": "CP10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 100.0,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "GHK-Cu",
+				"nick_name": "CU100",
+				"specification": "100mg*10vials",
+				"price_per_kit": 50.0,
+				"mg": "100mg",
+				"vials": 10
+			},
+			{
+				"product_name": "KPV",
+				"nick_name": "KPV10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 55.0,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "MOTS-c",
+				"nick_name": "MS10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 65.0,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "NAD+",
+				"nick_name": "NJ500",
+				"specification": "500mg*10vials",
+				"price_per_kit": 75.0,
+				"mg": "500mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Retatrutide",
+				"nick_name": "RT10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 100.0,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Retatrutide",
+				"nick_name": "RT20",
+				"specification": "20mg*10vials",
+				"price_per_kit": 180.0,
+				"mg": "20mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Retatrutide",
+				"nick_name": "RT30",
+				"specification": "30mg*10vials",
+				"price_per_kit": 225.0,
+				"mg": "30mg",
+				"vials": 10
+			},
+			{
+				"product_name": "TB-500",
+				"nick_name": "TB10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 160.0,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Tirzepatide",
+				"nick_name": "TR60",
+				"specification": "60mg*10vials",
+				"price_per_kit": 200.0,
+				"mg": "60mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Bacteriostatic Water (Benzyl Alcohol)",
+				"nick_name": "BA03",
+				"specification": "3ml*10vials",
+				"price_per_kit": 15.0,
+				"mg": "3ml",
+				"vials": 10
+			},
+			{
+				"product_name": "Bacteriostatic Water (Benzyl Alcohol)",
+				"nick_name": "BA10",
+				"specification": "10ml*10vials",
+				"price_per_kit": 20.0,
+				"mg": "10ml",
+				"vials": 10
+			}
+		]
+	},
 	"Kerui": {
 		"name": "Kerui",
+		"region": "China",
 		"contact": {
 			"representative": "Mia",
 			"whatsapp": "+852 44722635",
 			"payment_methods": "Crypto and Wire",
-			"shipping_time": "15-20 Days"
+			"shipping_time": "15-20 Days",
+			"shipping_fee": 50
 		},
 		"products": [
 			{
@@ -2032,11 +2358,13 @@
 	},
 	"Lilipeptide": {
 		"name": "Lilipeptide",
+		"region": "China",
 		"contact": {
 			"representative": "Mia Becky",
 			"whatsapp": "+852 6556 6430",
 			"payment_methods": "All Forms",
-			"shipping_time": "15-20 Days"
+			"shipping_time": "15-20 Days",
+			"shipping_fee": 50
 		},
 		"products": [
 			{
@@ -2939,11 +3267,13 @@
 	},
 	"Marvel_Peptides": {
 		"name": "MarvelPep - Kitty",
+		"region": "China",
 		"contact": {
 			"representative": "Kitty",
 			"whatsapp": "+852 6705 9715",
 			"payment_methods": "All Forms",
-			"shipping_time": "15-20 Days"
+			"shipping_time": "15-20 Days",
+			"shipping_fee": 50
 		},
 		"products": [
 			{
@@ -4391,6 +4721,7 @@
 	},
 	"MKM_Peptides": {
 		"name": "MKM Peptides",
+		"region": "China",
 		"contact": {
 			"person": "Cassie",
 			"whatsapp": "+86 176 59906901",
@@ -4399,7 +4730,9 @@
 			"email": "sales05@mokemei.com",
 			"representative": "Cassie",
 			"payment_methods": "All Forms",
-			"shipping_time": "7-15 Days"
+			"shipping_time": "7-15 Days",
+			"shipping_fee": 70,
+			"shipping_note": "Free shipping for orders over $700"
 		},
 		"products": [
 			{
@@ -6518,12 +6851,14 @@
 	},
 	"Peptide_Lab": {
 		"name": "PEPTIDE LAB",
+		"region": "China",
 		"contact": {
 			"whatsapp": "+852 5588 6802",
 			"email": "dengkai6218@gmail.com",
 			"representative": "Audrey",
 			"payment_methods": "All Forms",
-			"shipping_time": "15-20 Days"
+			"shipping_time": "15-20 Days",
+			"shipping_fee": 50
 		},
 		"products": [
 			{
@@ -6560,6 +6895,14 @@
 			},
 			{
 				"product_name": "Tirzepatide",
+				"nick_name": "TR40",
+				"specification": "40mg*10vials",
+				"price_per_kit": 130,
+				"mg": "40mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Tirzepatide",
 				"nick_name": "TR50",
 				"specification": "50mg*10vials",
 				"price_per_kit": 155,
@@ -6572,6 +6915,22 @@
 				"specification": "60mg*10vials",
 				"price_per_kit": 180,
 				"mg": "60mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Tirzepatide",
+				"nick_name": "TR80",
+				"specification": "80mg*10vials",
+				"price_per_kit": 220,
+				"mg": "80mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Tirzepatide",
+				"nick_name": "TR120",
+				"specification": "120mg*10vials",
+				"price_per_kit": 290,
+				"mg": "120mg",
 				"vials": 10
 			},
 			{
@@ -6608,6 +6967,14 @@
 			},
 			{
 				"product_name": "Retatrutide",
+				"nick_name": "RT40",
+				"specification": "40mg*10vials",
+				"price_per_kit": 195,
+				"mg": "40mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Retatrutide",
 				"nick_name": "RT50",
 				"specification": "50mg*10vials",
 				"price_per_kit": 250,
@@ -6620,14 +6987,6 @@
 				"specification": "60mg*10vials",
 				"price_per_kit": 275,
 				"mg": "60mg",
-				"vials": 10
-			},
-			{
-				"product_name": "Semaglutide",
-				"nick_name": "SM15",
-				"specification": "15mg*10vials",
-				"price_per_kit": 45,
-				"mg": "15mg",
 				"vials": 10
 			},
 			{
@@ -6647,6 +7006,46 @@
 				"vials": 10
 			},
 			{
+				"product_name": "Selank",
+				"nick_name": "SK10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 46,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Selank",
+				"nick_name": "SK30",
+				"specification": "30mg*10vials",
+				"price_per_kit": 110,
+				"mg": "30mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Semax",
+				"nick_name": "SX10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 46,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Semax",
+				"nick_name": "SX30",
+				"specification": "30mg*10vials",
+				"price_per_kit": 110,
+				"mg": "30mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Snap-8",
+				"nick_name": "NP8",
+				"specification": "10mg*10vials",
+				"price_per_kit": 45,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
 				"product_name": "Tesamorelin",
 				"nick_name": "TSM5",
 				"specification": "5mg*10vials",
@@ -6660,6 +7059,14 @@
 				"specification": "10mg*10vials",
 				"price_per_kit": 145,
 				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Tesamorelin",
+				"nick_name": "TSM20",
+				"specification": "20mg*10vials",
+				"price_per_kit": 290,
+				"mg": "20mg",
 				"vials": 10
 			},
 			{
@@ -6687,6 +7094,22 @@
 				"vials": 10
 			},
 			{
+				"product_name": "Cagrilintide",
+				"nick_name": "CGL5",
+				"specification": "5mg*10vials",
+				"price_per_kit": 95,
+				"mg": "5mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Cagrilintide",
+				"nick_name": "CGL10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 165,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
 				"product_name": "TB-500",
 				"nick_name": "TB5",
 				"specification": "5mg*10vials",
@@ -6703,7 +7126,23 @@
 				"vials": 10
 			},
 			{
-				"product_name": "BPC-157 + TB-500",
+				"product_name": "SS-31",
+				"nick_name": "2S10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 75,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "SS-31",
+				"nick_name": "2S50",
+				"specification": "50mg*10vials",
+				"price_per_kit": 200,
+				"mg": "50mg",
+				"vials": 10
+			},
+			{
+				"product_name": "GLOW (BPC-157 + GHK-Cu + TB-500)",
 				"nick_name": "GLOW70",
 				"specification": "70mg*10vials",
 				"price_per_kit": 250,
@@ -6711,11 +7150,51 @@
 				"vials": 10
 			},
 			{
-				"product_name": "BPC-157 + TB-500",
+				"product_name": "KLOW (BPC-157 + GHK-Cu + TB-500 + KPV)",
 				"nick_name": "KLOW80",
 				"specification": "80mg*10vials",
 				"price_per_kit": 290,
 				"mg": "80mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Epithalon",
+				"nick_name": "ET10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 65,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Epithalon",
+				"nick_name": "ET50",
+				"specification": "50mg*10vials",
+				"price_per_kit": 155,
+				"mg": "50mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Melanotan I (MT-1)",
+				"nick_name": "MT-1",
+				"specification": "10mg*10vials",
+				"price_per_kit": 45,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Melanotan II (MT-2)",
+				"nick_name": "MT-2",
+				"specification": "10mg*10vials",
+				"price_per_kit": 50,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Kisspeptin",
+				"nick_name": "KS-10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 80,
+				"mg": "10mg",
 				"vials": 10
 			},
 			{
@@ -6752,17 +7231,17 @@
 			},
 			{
 				"product_name": "CJC-1295 (no DAC)",
-				"nick_name": "CJC5",
-				"specification": "5mg*10vials",
-				"price_per_kit": 75,
-				"mg": "5mg",
-				"vials": 10
-			},
-			{
-				"product_name": "CJC-1295 (no DAC)",
 				"nick_name": "CJC10",
 				"specification": "10mg*10vials",
 				"price_per_kit": 136,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Ipamorelin",
+				"nick_name": "IP10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 68,
 				"mg": "10mg",
 				"vials": 10
 			},
@@ -6840,14 +7319,6 @@
 			},
 			{
 				"product_name": "Glutathione",
-				"nick_name": "GTT400",
-				"specification": "400mg*10vials",
-				"price_per_kit": 38,
-				"mg": "400mg",
-				"vials": 10
-			},
-			{
-				"product_name": "Glutathione",
 				"nick_name": "GTT600",
 				"specification": "600mg*10vials",
 				"price_per_kit": 60,
@@ -6879,7 +7350,7 @@
 				"vials": 10
 			},
 			{
-				"product_name": "Vitamin B12",
+				"product_name": "Lipo-C (with B12)",
 				"nick_name": "LC216",
 				"specification": "10ml*10vials",
 				"price_per_kit": 80,
@@ -6907,7 +7378,15 @@
 				"nick_name": "LC600",
 				"specification": "10ml*10vials",
 				"price_per_kit": 80,
-				"mg": "10ml",
+				"mg": "600mg",
+				"vials": 10
+			},
+			{
+				"product_name": "L-Carnitine",
+				"nick_name": "LC1200",
+				"specification": "10ml*10vials",
+				"price_per_kit": 90,
+				"mg": "1200mg",
 				"vials": 10
 			},
 			{
@@ -7002,12 +7481,14 @@
 	},
 	"Peptide_Suplier__WanShun_": {
 		"name": "WanShun Peptide",
+		"region": "China",
 		"contact": {
 			"whatsapp": "+852 6729 1670",
 			"website": "www.wanshunpeptide.com",
 			"representative": "Sophie",
 			"payment_methods": "All Forms (CC over $1k)",
-			"shipping_time": "15-20 Days"
+			"shipping_time": "15-20 Days",
+			"shipping_fee": 55
 		},
 		"products": [
 			{
@@ -7334,15 +7815,15 @@
 				"nick_name": "NJ1000",
 				"specification": "1000mg*10vials",
 				"price_per_kit": {
-					"USD": 176,
-					"CAD": 245
+					"USD": 153,
+					"CAD": 212
 				},
 				"mg": "1000mg",
 				"vials": 10
 			},
 			{
 				"product_name": "Glutathione",
-				"nick_name": "GTT",
+				"nick_name": "GTT1500",
 				"specification": "1500mg*10vials",
 				"price_per_kit": {
 					"USD": 74,
@@ -7539,18 +8020,7 @@
 				"vials": 10
 			},
 			{
-				"product_name": "Cerebrolysin",
-				"nick_name": "CBL60",
-				"specification": "60mg*6vials",
-				"price_per_kit": {
-					"USD": 29,
-					"CAD": 41
-				},
-				"mg": "60mg",
-				"vials": 6
-			},
-			{
-				"product_name": "Sermorelin",
+				"product_name": "Sermorelin Acetate",
 				"nick_name": "SMO5",
 				"specification": "5mg*10vials",
 				"price_per_kit": {
@@ -7561,7 +8031,7 @@
 				"vials": 10
 			},
 			{
-				"product_name": "Sermorelin",
+				"product_name": "Sermorelin Acetate",
 				"nick_name": "SMO10",
 				"specification": "10mg*10vials",
 				"price_per_kit": {
@@ -7741,8 +8211,8 @@
 				"nick_name": "ET50",
 				"specification": "50mg*10vials",
 				"price_per_kit": {
-					"USD": 206,
-					"CAD": 286
+					"USD": 200,
+					"CAD": 278
 				},
 				"mg": "50mg",
 				"vials": 10
@@ -7807,8 +8277,8 @@
 				"nick_name": "CND10",
 				"specification": "10mg*10vials",
 				"price_per_kit": {
-					"USD": 176,
-					"CAD": 245
+					"USD": 171,
+					"CAD": 237
 				},
 				"mg": "10mg",
 				"vials": 10
@@ -7866,17 +8336,6 @@
 					"CAD": 73
 				},
 				"mg": "10mg",
-				"vials": 10
-			},
-			{
-				"product_name": "SLU-PP-322",
-				"nick_name": "322",
-				"specification": "5mg*10vials",
-				"price_per_kit": {
-					"USD": 118,
-					"CAD": 163
-				},
-				"mg": "5mg",
 				"vials": 10
 			},
 			{
@@ -7946,23 +8405,12 @@
 				"vials": 10
 			},
 			{
-				"product_name": "Hyaluronic Acid",
-				"nick_name": "HA5",
-				"specification": "5mg*1vials",
-				"price_per_kit": {
-					"USD": 24,
-					"CAD": 33
-				},
-				"mg": "5mg",
-				"vials": 1
-			},
-			{
 				"product_name": "Oxytocin",
 				"nick_name": "OT2",
 				"specification": "2mg*10vials",
 				"price_per_kit": {
-					"USD": 44,
-					"CAD": 61
+					"USD": 38,
+					"CAD": 53
 				},
 				"mg": "2mg",
 				"vials": 10
@@ -7979,18 +8427,7 @@
 				"vials": 10
 			},
 			{
-				"product_name": "Ara-290",
-				"nick_name": "RA10",
-				"specification": "10mg*10vials",
-				"price_per_kit": {
-					"USD": 74,
-					"CAD": 102
-				},
-				"mg": "10mg",
-				"vials": 10
-			},
-			{
-				"product_name": "BPC-157 + TB-500",
+				"product_name": "GLOW (BPC-157 + GHK-Cu + TB-500)",
 				"nick_name": "BBG70",
 				"specification": "70mg*10vials",
 				"price_per_kit": {
@@ -8001,7 +8438,7 @@
 				"vials": 10
 			},
 			{
-				"product_name": "KPV",
+				"product_name": "KLOW (BPC-157 + GHK-Cu + TB-500 + KPV)",
 				"nick_name": "KLOW80",
 				"specification": "80mg*10vials",
 				"price_per_kit": {
@@ -8086,29 +8523,7 @@
 					"CAD": 41
 				},
 				"mg": "3ml",
-				"vials": null
-			},
-			{
-				"product_name": "Pinealon",
-				"nick_name": "PI5",
-				"specification": "5mg*10vials",
-				"price_per_kit": {
-					"USD": 47,
-					"CAD": 65
-				},
-				"mg": "5mg",
-				"vials": 10
-			},
-			{
-				"product_name": "Pinealon",
-				"nick_name": "PI10",
-				"specification": "10mg*10vials",
-				"price_per_kit": {
-					"USD": 74,
-					"CAD": 102
-				},
-				"mg": "10mg",
-				"vials": 10
+				"vials": 1
 			},
 			{
 				"product_name": "Pinealon",
@@ -8124,12 +8539,12 @@
 			{
 				"product_name": "Vitamin B12",
 				"nick_name": "B12",
-				"specification": "10ml*10vials",
+				"specification": "10mL*10vials",
 				"price_per_kit": {
 					"USD": 29,
 					"CAD": 41
 				},
-				"mg": "10ml",
+				"mg": "10mL",
 				"vials": 10
 			},
 			{
@@ -8188,7 +8603,7 @@
 				"vials": 10
 			},
 			{
-				"product_name": "Semaglutide",
+				"product_name": "Cagrilintide + Semaglutide",
 				"nick_name": "CS5",
 				"specification": "5mg*10vials",
 				"price_per_kit": {
@@ -8199,7 +8614,7 @@
 				"vials": 10
 			},
 			{
-				"product_name": "Semaglutide",
+				"product_name": "Cagrilintide + Semaglutide",
 				"nick_name": "CS10",
 				"specification": "10mg*10vials",
 				"price_per_kit": {
@@ -8208,17 +8623,39 @@
 				},
 				"mg": "10mg",
 				"vials": 10
+			},
+			{
+				"product_name": "FOXO4",
+				"nick_name": "F410",
+				"specification": "10mg*10vials",
+				"price_per_kit": {
+					"USD": 353,
+					"CAD": 490
+				},
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Dihexa",
+				"nick_name": "DI10",
+				"specification": "10mg*10vials",
+				"price_per_kit": {
+					"USD": 65,
+					"CAD": 90
+				},
+				"mg": "10mg",
+				"vials": 10
 			}
 		]
 	},
 	"BaoHuaDongNuo_Peps": {
 		"name": "BaoHuaDongNuo Peps",
+		"region": "China",
 		"contact": {
-			"whatsapp_telegram": [
-				"+447523712332",
-				"+447759019667"
-			],
-			"email": "baohuadongnuo@gmail.com"
+			"whatsapp_telegram": ["+447523712332", "+447759019667"],
+			"email": "baohuadongnuo@gmail.com",
+			"shipping_fee": 50,
+			"shipping_note": "Free shipping for orders over $300"
 		},
 		"products": [
 			{
@@ -8257,7 +8694,7 @@
 				"product_name": "Tirzepatide",
 				"nick_name": null,
 				"specification": "40mg*10vials",
-				"price_per_kit": 140,
+				"price_per_kit": 120,
 				"mg": "40mg",
 				"vials": 10
 			},
@@ -8297,7 +8734,7 @@
 				"product_name": "Retatrutide",
 				"nick_name": null,
 				"specification": "60mg*10vials",
-				"price_per_kit": 360,
+				"price_per_kit": 320,
 				"mg": "60mg",
 				"vials": 10
 			},
@@ -8395,6 +8832,30 @@
 				"specification": "80mg*10vials",
 				"price_per_kit": 180,
 				"mg": "80mg",
+				"vials": 10
+			},
+			{
+				"product_name": "CJC-1295 (no DAC) + Ipamorelin",
+				"nick_name": "CP10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 110,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "BPC-157 + TB-500",
+				"nick_name": "BB10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 120,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "BPC-157 + TB-500",
+				"nick_name": "BB20",
+				"specification": "20mg*10vials",
+				"price_per_kit": 180,
+				"mg": "20mg",
 				"vials": 10
 			},
 			{
@@ -8585,9 +9046,12 @@
 	},
 	"Andys_Peptides_China": {
 		"name": "Andy's Peptides (China)",
+		"region": "China",
 		"contact": {
 			"whatsapp": "+44 7928 545139",
-			"email": "Andy-Peps-Studio@proton.me"
+			"email": "Andy-Peps-Studio@proton.me",
+			"shipping_fee": 50,
+			"shipping_note": "Free shipping for orders over $600"
 		},
 		"products": [
 			{
@@ -8642,8 +9106,16 @@
 				"product_name": "Tirzepatide",
 				"nick_name": "Tirz120mg",
 				"specification": "120mg*10vials",
-				"price_per_kit": 400.0,
+				"price_per_kit": 320.0,
 				"mg": "120mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Retatrutide",
+				"nick_name": "Reta5mg",
+				"specification": "5mg*10vials",
+				"price_per_kit": 75.0,
+				"mg": "5mg",
 				"vials": 10
 			},
 			{
@@ -8839,6 +9311,14 @@
 				"vials": 10
 			},
 			{
+				"product_name": "Kisspeptin",
+				"nick_name": "Kiss10mg",
+				"specification": "10mg*10vials",
+				"price_per_kit": 70.0,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
 				"product_name": "KLOW (BPC-157 + GHK-Cu + TB-500 + KPV)",
 				"nick_name": "Klow80mg",
 				"specification": "80mg*10vials",
@@ -9010,16 +9490,26 @@
 	},
 	"Andys_Peptides_US": {
 		"name": "Andy's Peptides US",
+		"region": "US",
 		"contact": {
 			"whatsapp": "+44 7928 545139",
-			"email": "Andy-Peps-Studio@proton.me"
+			"email": "Andy-Peps-Studio@proton.me",
+			"shipping_fee": 20
 		},
 		"products": [
 			{
 				"product_name": "Tirzepatide",
+				"nick_name": "Tirz10mg",
+				"specification": "10mg*10vials",
+				"price_per_kit": 85,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Tirzepatide",
 				"nick_name": "Tirz15mg",
 				"specification": "15mg*10vials",
-				"price_per_kit": 90.0,
+				"price_per_kit": 90,
 				"mg": "15mg",
 				"vials": 10
 			},
@@ -9027,7 +9517,7 @@
 				"product_name": "Tirzepatide",
 				"nick_name": "Tirz20mg",
 				"specification": "20mg*10vials",
-				"price_per_kit": 100.0,
+				"price_per_kit": 100,
 				"mg": "20mg",
 				"vials": 10
 			},
@@ -9035,7 +9525,7 @@
 				"product_name": "Tirzepatide",
 				"nick_name": "Tirz30mg",
 				"specification": "30mg*10vials",
-				"price_per_kit": 110.0,
+				"price_per_kit": 110,
 				"mg": "30mg",
 				"vials": 10
 			},
@@ -9043,39 +9533,47 @@
 				"product_name": "Tirzepatide",
 				"nick_name": "Tirz60mg",
 				"specification": "60mg*10vials",
-				"price_per_kit": 210.0,
+				"price_per_kit": 210,
 				"mg": "60mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Retatrutide",
+				"nick_name": "Reta5mg",
+				"specification": "5mg*10vials",
+				"price_per_kit": 85,
+				"mg": "5mg",
 				"vials": 10
 			},
 			{
 				"product_name": "Retatrutide",
 				"nick_name": "Reta10mg",
 				"specification": "10mg*10vials",
-				"price_per_kit": 110.0,
+				"price_per_kit": 110,
 				"mg": "10mg",
 				"vials": 10
 			},
 			{
 				"product_name": "Retatrutide",
 				"nick_name": "Reta20mg",
-				"specification": "20mg*1vial",
-				"price_per_kit": 200.0,
+				"specification": "20mg*10vials",
+				"price_per_kit": 200,
 				"mg": "20mg",
-				"vials": 1
+				"vials": 10
 			},
 			{
 				"product_name": "Retatrutide",
 				"nick_name": "Reta30mg",
-				"specification": "30mg*1vial",
-				"price_per_kit": 240.0,
+				"specification": "30mg*10vials",
+				"price_per_kit": 240,
 				"mg": "30mg",
-				"vials": 1
+				"vials": 10
 			},
 			{
 				"product_name": "BPC-157 + TB-500",
 				"nick_name": "BB10",
 				"specification": "10mg*10vials",
-				"price_per_kit": 110.0,
+				"price_per_kit": 110,
 				"mg": "10mg",
 				"vials": 10
 			},
@@ -9083,7 +9581,7 @@
 				"product_name": "BPC-157 + TB-500",
 				"nick_name": "BB20",
 				"specification": "20mg*10vials",
-				"price_per_kit": 200.0,
+				"price_per_kit": 200,
 				"mg": "20mg",
 				"vials": 10
 			},
@@ -9091,15 +9589,23 @@
 				"product_name": "BPC-157",
 				"nick_name": "BPC157-10mg",
 				"specification": "10mg*10vials",
-				"price_per_kit": 80.0,
+				"price_per_kit": 85,
 				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Cagrilintide",
+				"nick_name": "CAG5mg",
+				"specification": "5mg*10vials",
+				"price_per_kit": 110,
+				"mg": "5mg",
 				"vials": 10
 			},
 			{
 				"product_name": "CJC-1295 (no DAC)",
 				"nick_name": "CJC5mg",
 				"specification": "5mg*10vials",
-				"price_per_kit": 95.0,
+				"price_per_kit": 90,
 				"mg": "5mg",
 				"vials": 10
 			},
@@ -9107,7 +9613,7 @@
 				"product_name": "CJC-1295 (no DAC)",
 				"nick_name": "CJC10mg",
 				"specification": "10mg*10vials",
-				"price_per_kit": 150.0,
+				"price_per_kit": 150,
 				"mg": "10mg",
 				"vials": 10
 			},
@@ -9115,7 +9621,7 @@
 				"product_name": "CJC-1295 (no DAC) + Ipamorelin",
 				"nick_name": "CP10",
 				"specification": "10mg*10vials",
-				"price_per_kit": 140.0,
+				"price_per_kit": 140,
 				"mg": "10mg",
 				"vials": 10
 			},
@@ -9123,39 +9629,47 @@
 				"product_name": "DSIP",
 				"nick_name": "Dsip5mg",
 				"specification": "5mg*10vials",
-				"price_per_kit": 80.0,
+				"price_per_kit": 80,
 				"mg": "5mg",
+				"vials": 10
+			},
+			{
+				"product_name": "DSIP",
+				"nick_name": "Dsip10mg",
+				"specification": "10mg*10vials",
+				"price_per_kit": 110,
+				"mg": "10mg",
 				"vials": 10
 			},
 			{
 				"product_name": "Epithalon",
 				"nick_name": "EPI10mg",
 				"specification": "10mg*10vials",
-				"price_per_kit": 80.0,
+				"price_per_kit": 85,
 				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "GHK-Cu",
+				"nick_name": "GHK50mg",
+				"specification": "50mg*10vials",
+				"price_per_kit": 70,
+				"mg": "50mg",
 				"vials": 10
 			},
 			{
 				"product_name": "GHK-Cu",
 				"nick_name": "GHK100mg",
 				"specification": "100mg*10vials",
-				"price_per_kit": 80.0,
+				"price_per_kit": 85,
 				"mg": "100mg",
-				"vials": 10
-			},
-			{
-				"product_name": "IGF-1 LR3",
-				"nick_name": "IGF1mg",
-				"specification": "1mg*10vials",
-				"price_per_kit": 210.0,
-				"mg": "1mg",
 				"vials": 10
 			},
 			{
 				"product_name": "Ipamorelin",
 				"nick_name": "IPA10mg",
 				"specification": "10mg*10vials",
-				"price_per_kit": 90.0,
+				"price_per_kit": 85,
 				"mg": "10mg",
 				"vials": 10
 			},
@@ -9163,7 +9677,7 @@
 				"product_name": "KLOW (BPC-157 + GHK-Cu + TB-500 + KPV)",
 				"nick_name": "Klow80mg",
 				"specification": "80mg*10vials",
-				"price_per_kit": 200.0,
+				"price_per_kit": 200,
 				"mg": "80mg",
 				"vials": 10
 			},
@@ -9171,7 +9685,31 @@
 				"product_name": "KPV",
 				"nick_name": "KPV10mg",
 				"specification": "10mg*10vials",
-				"price_per_kit": 80.0,
+				"price_per_kit": 85,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "MOTS-c",
+				"nick_name": "MOT10mg",
+				"specification": "10mg*10vials",
+				"price_per_kit": 85,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "MOTS-c",
+				"nick_name": "MOT40mg",
+				"specification": "40mg*10vials",
+				"price_per_kit": 220,
+				"mg": "40mg",
+				"vials": 10
+			},
+			{
+				"product_name": "PT-141",
+				"nick_name": "PT10mg",
+				"specification": "10mg*10vials",
+				"price_per_kit": 85,
 				"mg": "10mg",
 				"vials": 10
 			},
@@ -9179,7 +9717,15 @@
 				"product_name": "Selank",
 				"nick_name": "Selank10mg",
 				"specification": "10mg*10vials",
-				"price_per_kit": 80.0,
+				"price_per_kit": 85,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Semax",
+				"nick_name": "Semax10mg",
+				"specification": "10mg*10vials",
+				"price_per_kit": 85,
 				"mg": "10mg",
 				"vials": 10
 			},
@@ -9187,7 +9733,7 @@
 				"product_name": "SS-31",
 				"nick_name": "SS31-10mg",
 				"specification": "10mg*10vials",
-				"price_per_kit": 110.0,
+				"price_per_kit": 110,
 				"mg": "10mg",
 				"vials": 10
 			},
@@ -9195,7 +9741,15 @@
 				"product_name": "Tesamorelin",
 				"nick_name": "Tesa10mg",
 				"specification": "10mg*10vials",
-				"price_per_kit": 180.0,
+				"price_per_kit": 180,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "TB-500",
+				"nick_name": "TB10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 140,
 				"mg": "10mg",
 				"vials": 10
 			}

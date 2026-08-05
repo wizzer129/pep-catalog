@@ -1,5 +1,25 @@
 <script setup>
 import { computed, shallowRef, watch } from 'vue';
+import { useCartStore } from '../stores/cart';
+
+const cart = useCartStore();
+
+function addRowToCart(row) {
+	for (const v of props.vendors) {
+		const entry = props.priceMap[v]?.[row.key];
+		if (entry != null) cart.addItem(v, row, entry);
+	}
+}
+
+function isRowInCart(row) {
+	return props.vendors.some((v) => cart.items[v]?.[row.key] != null);
+}
+
+function removeRowFromCart(row) {
+	for (const v of props.vendors) {
+		if (cart.items[v]?.[row.key] != null) cart.removeItem(v, row.key);
+	}
+}
 
 const props = defineProps({
 	rows: { type: Array, required: true },
@@ -20,9 +40,7 @@ function cycleSort() {
 const sortedRows = computed(() => {
 	if (!sortDir.value) return props.rows;
 	return [...props.rows].sort((a, b) =>
-		sortDir.value === 'asc'
-			? a.key.localeCompare(b.key)
-			: b.key.localeCompare(a.key),
+		sortDir.value === 'asc' ? a.key.localeCompare(b.key) : b.key.localeCompare(a.key),
 	);
 });
 
@@ -62,7 +80,11 @@ const lowestPriceMap = computed(() => {
 				<tr>
 					<th class="col-product">
 						Product
-						<button class="sort-btn" @click="cycleSort" :title="sortDir === 'asc' ? 'Sort Z→A' : 'Sort A→Z'">
+						<button
+							class="sort-btn"
+							@click="cycleSort"
+							:title="sortDir === 'asc' ? 'Sort Z→A' : 'Sort A→Z'"
+						>
 							<span v-if="sortDir === 'asc'">↑</span>
 							<span v-else-if="sortDir === 'desc'">↓</span>
 							<span v-else class="sort-idle">↕</span>
@@ -85,8 +107,16 @@ const lowestPriceMap = computed(() => {
 					</td>
 				</tr>
 				<tr v-for="row in pageRows" :key="row.key">
-					<td class="col-product">
+					<td class="col-product" @click="addRowToCart(row)">
 						{{ row.product_name }} <span class="col-mg">{{ row.mg }}</span>
+						<button
+							v-if="isRowInCart(row)"
+							class="row-remove-btn"
+							title="Remove from cart"
+							@click.stop="removeRowFromCart(row)"
+						>
+							✕
+						</button>
 					</td>
 					<td
 						v-for="v in vendors"
@@ -99,7 +129,10 @@ const lowestPriceMap = computed(() => {
 						}"
 					>
 						<template v-if="priceMap[v]?.[row.key] != null">
-							<span class="price-wrap">
+							<span
+								class="price-wrap"
+								@click="cart.addItem(v, row, priceMap[v][row.key])"
+							>
 								${{ priceMap[v][row.key].price.toFixed(2) }}
 								<span class="tooltip"
 									>{{ priceMap[v][row.key].mg }} ×
@@ -177,6 +210,16 @@ th {
 	&.col-vendor {
 		text-align: right;
 	}
+
+	&.col-product {
+		position: sticky;
+		left: 0;
+		z-index: 3;
+		background: color-mix(in srgb, var(--bg) 55%, transparent);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+		box-shadow: 2px 0 4px -2px rgba(0, 0, 0, 0.25);
+	}
 }
 
 .sort-btn {
@@ -193,29 +236,37 @@ th {
 	font-size: 0.7rem;
 	cursor: pointer;
 	vertical-align: middle;
-	transition: border-color 0.15s, color 0.15s;
+	transition:
+		border-color 0.15s,
+		color 0.15s;
 
 	&:hover {
 		border-color: var(--teal);
 		color: var(--teal);
 	}
 
-	.sort-idle { opacity: 0.45; }
+	.sort-idle {
+		opacity: 0.45;
+	}
 }
 
 tbody tr {
 	transition: background 0.12s;
 
 	&:hover td {
-		background: color-mix(in srgb, var(--teal) 5%, var(--surface));
+		background: color-mix(in srgb, var(--teal) 6%, transparent);
 	}
 
 	&:nth-child(even) td {
-		background: var(--surface2);
+		background: color-mix(in srgb, var(--text) 5%, transparent);
 	}
 
 	&:hover:nth-child(even) td {
-		background: color-mix(in srgb, var(--teal) 5%, var(--surface2));
+		background: color-mix(
+			in srgb,
+			var(--teal) 6%,
+			color-mix(in srgb, var(--text) 5%, transparent)
+		);
 	}
 
 	&:last-child td {
@@ -230,13 +281,21 @@ td {
 	transition: background 0.12s;
 
 	&.col-product {
+		position: sticky;
+		left: 0;
+		z-index: 1;
+		background: color-mix(in srgb, var(--bg) 55%, transparent);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+		box-shadow: 2px 0 4px -2px rgba(0, 0, 0, 0.25);
 		font-weight: 500;
 		font-size: 0.88rem;
+		cursor: pointer;
 
 		.col-mg {
 			display: inline-block;
 			font-size: 0.68rem;
-			color: var(--bg);
+			color: var(--text);
 			background: var(--teal);
 			font-weight: 600;
 			margin-left: 0.5rem;
@@ -244,6 +303,24 @@ td {
 			border-radius: 999px;
 			vertical-align: middle;
 			opacity: 0.85;
+		}
+
+		.row-remove-btn {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			margin-left: 0.5rem;
+			background: none;
+			border: none;
+			color: var(--text-muted);
+			cursor: pointer;
+			font-size: 0.7rem;
+			padding: 0.1rem 0.3rem;
+			vertical-align: middle;
+
+			&:hover {
+				color: var(--red);
+			}
 		}
 	}
 
@@ -268,6 +345,13 @@ td {
 .price-wrap {
 	position: relative;
 	display: inline-block;
+	cursor: pointer;
+	border-radius: 4px;
+	transition: background 0.12s;
+
+	&:hover {
+		background: color-mix(in srgb, var(--teal) 16%, transparent);
+	}
 
 	.tooltip {
 		display: none;

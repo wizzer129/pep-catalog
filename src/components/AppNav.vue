@@ -13,7 +13,10 @@ const { isDark, toggle } = useTheme();
 				<router-link to="/catalog">Catalog</router-link>
 				<router-link to="/vendors">Vendors</router-link>
 			</nav>
-			<label class="theme-switch" :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'">
+			<label
+				class="theme-switch"
+				:aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+			>
 				<input type="checkbox" :checked="isDark" @change="toggle" />
 				<span class="track">
 					<span class="thumb">
@@ -66,13 +69,18 @@ header {
 		color: var(--text-muted);
 		font-size: 0.85rem;
 		text-decoration: none;
-		transition: color 0.15s, border-color 0.15s;
+		transition:
+			color 0.15s,
+			border-color 0.15s;
 
-		&:hover { color: var(--text); }
+		&:hover {
+			color: var(--text);
+		}
 
 		&.router-link-active {
-			color: var(--teal);
+			color: var(--text);
 			border-color: var(--teal);
+			background: color-mix(in srgb, var(--teal) 10%, var(--surface));
 		}
 	}
 }
@@ -100,7 +108,10 @@ header {
 		box-shadow:
 			inset 0 2px 4px rgba(0, 0, 0, 0.25),
 			0 1px 0 rgba(255, 255, 255, 0.06);
-		transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+		transition:
+			background 0.2s,
+			border-color 0.2s,
+			box-shadow 0.2s;
 	}
 
 	.thumb {
@@ -118,13 +129,16 @@ header {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+		transition:
+			transform 0.2s,
+			background 0.2s,
+			box-shadow 0.2s;
 	}
 
 	.icon {
 		font-size: 11px;
 		line-height: 1;
-		filter: drop-shadow(0 1px 1px rgba(0,0,0,0.3));
+		filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
 	}
 
 	input:checked ~ .track {

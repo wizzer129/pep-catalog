@@ -27,29 +27,16 @@ function chipColor(vendor) {
 
 <template>
 	<div class="vendor-filter">
-		<span class="label">Vendors</span>
 		<button
 			v-for="vendor in vendors"
 			:key="vendor"
 			class="chip"
 			:class="{ active: selected.has(vendor) }"
-			:style="selected.has(vendor) ? {
-				borderColor: chipColor(vendor).border,
-				color: chipColor(vendor).text,
-				background: chipColor(vendor).bg,
-			} : {}"
 			@click="emit('toggle', vendor)"
 		>
-			<span class="chip-icon">
-				<svg v-if="selected.has(vendor)" viewBox="0 0 12 12" fill="none">
-					<circle cx="6" cy="6" r="5.5" fill="currentColor" fill-opacity="0.2" stroke="currentColor" stroke-width="1"/>
-					<path d="M3 6l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-				</svg>
-				<svg v-else viewBox="0 0 12 12" fill="none">
-					<circle cx="6" cy="6" r="5.5" stroke="currentColor" stroke-width="1"/>
-				</svg>
-			</span>
+			<span class="chip-dot" :style="{ background: chipColor(vendor).border }"></span>
 			{{ vendor.replace(/_/g, ' ') }}
+			<span v-if="selected.has(vendor)" class="chip-x">✕</span>
 		</button>
 	</div>
 </template>
@@ -59,51 +46,48 @@ function chipColor(vendor) {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	gap: 0.4rem;
-	padding: 0.85rem 1.25rem;
-	border-bottom: 1px solid var(--border);
-	background: var(--surface);
-}
-
-.label {
-	font-size: 0.7rem;
-	font-weight: 600;
-	text-transform: uppercase;
-	letter-spacing: 0.06em;
-	color: var(--text-muted);
-	margin-right: 0.25rem;
+	gap: 0.5rem;
+	padding: 0.5rem 0;
 }
 
 .chip {
 	display: inline-flex;
 	align-items: center;
-	gap: 0.35rem;
-	padding: 0.3rem 0.75rem 0.3rem 0.55rem;
+	gap: 0.4rem;
+	padding: 0.35rem 0.7rem;
 	border-radius: 999px;
 	border: 1px solid var(--border);
-	background: transparent;
+	background: color-mix(in srgb, var(--surface) 70%, transparent);
 	color: var(--text-muted);
 	font-size: 0.8rem;
+	opacity: 0.55;
 	cursor: pointer;
-	transition: border-color 0.15s, color 0.15s, background 0.15s;
+	transition:
+		opacity 0.15s,
+		background 0.15s,
+		color 0.15s;
 
-	.chip-icon {
-		display: flex;
-		align-items: center;
+	.chip-dot {
+		width: 7px;
+		height: 7px;
+		border-radius: 50%;
+		flex-shrink: 0;
+	}
 
-		svg {
-			width: 12px;
-			height: 12px;
-		}
+	.chip-x {
+		font-size: 0.65rem;
+		color: var(--text-muted);
+		margin-left: 0.1rem;
 	}
 
 	&:hover {
-		border-color: var(--teal-dim);
-		color: var(--text);
+		opacity: 0.2;
 	}
 
 	&.active {
-		font-weight: 500;
+		opacity: 1;
+		color: var(--text);
+		background: color-mix(in srgb, var(--surface) 90%, transparent);
 	}
 }
 </style>

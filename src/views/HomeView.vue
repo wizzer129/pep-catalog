@@ -177,6 +177,7 @@ function displayName(key, vendor) {
 	background: var(--surface);
 	border: 2px solid var(--border);
 	border-radius: 12px;
+	border-bottom-right-radius: 32px;
 	padding: 1.25rem 1.25rem 1rem;
 	cursor: pointer;
 	display: flex;
@@ -193,12 +194,15 @@ function displayName(key, vendor) {
 	&:hover {
 		transform: translateY(-5px);
 		box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+		filter: brightness(1.5);
 	}
 
 	&.selected {
 		transform: translateY(-5px);
-		box-shadow: 0 0 0 3px var(--highlight-glow), 0 10px 28px rgba(0, 0, 0, 0.35);
-		filter: brightness(1.08);
+		box-shadow:
+			0 0 0 3px var(--highlight-glow),
+			0 10px 28px rgba(0, 0, 0, 0.35);
+		filter: brightness(1.3);
 	}
 }
 

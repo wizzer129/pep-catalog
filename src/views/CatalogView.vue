@@ -4,8 +4,10 @@ import { useCatalogStore } from '../stores/catalog';
 import VendorFilter from '../components/VendorFilter.vue';
 import SearchBar from '../components/SearchBar.vue';
 import PriceTable from '../components/PriceTable.vue';
+import CartPanel from '../components/CartPanel.vue';
 
 const STORAGE_KEY = 'pepprice:selected-vendors';
+const SEARCH_STORAGE_KEY = 'pepprice:selected-products';
 
 const catalog = useCatalogStore();
 
@@ -56,7 +58,10 @@ const activeVendorColors = computed(() =>
 	}),
 );
 
-const selectedProducts = shallowRef([]);
+const savedProducts = localStorage.getItem(SEARCH_STORAGE_KEY);
+const selectedProducts = shallowRef(savedProducts ? JSON.parse(savedProducts) : []);
+
+watch(selectedProducts, (val) => localStorage.setItem(SEARCH_STORAGE_KEY, JSON.stringify(val)));
 
 const productNames = computed(() => catalog.productRows.map((r) => r.key));
 
@@ -77,26 +82,27 @@ const filteredRows = computed(() => {
 	<div v-else-if="catalog.error" class="state-msg error">{{ catalog.error }}</div>
 
 	<template v-else>
-		<div class="catalog-container">
-			<div class="catalog-card">
+		<div class="catalog-page">
+			<div class="catalog-container">
 				<VendorFilter
 					:vendors="catalog.vendorKeys"
 					:selected="selectedVendors"
 					@toggle="toggleVendor"
 				/>
+				<SearchBar
+					class="catalog-search-bar"
+					v-model="selectedProducts"
+					:options="productNames"
+				/>
+				<PriceTable
+					:rows="filteredRows"
+					:vendors="activeVendors"
+					:price-map="catalog.priceMap"
+					:vendor-colors="activeVendorColors"
+					:page-size="11"
+				/>
 			</div>
-			<SearchBar
-				class="catalog-search-bar"
-				v-model="selectedProducts"
-				:options="productNames"
-			/>
-			<PriceTable
-				:rows="filteredRows"
-				:vendors="activeVendors"
-				:price-map="catalog.priceMap"
-				:vendor-colors="activeVendorColors"
-				:page-size="11"
-			/>
+			<CartPanel class="cart-panel" />
 		</div>
 	</template>
 </template>
@@ -113,12 +119,20 @@ const filteredRows = computed(() => {
 	}
 }
 
+.catalog-page {
+	display: flex;
+	align-items: flex-start;
+	gap: 1rem;
+}
+
 .catalog-container {
 	display: flex;
 	flex-direction: column;
 	justify-content: start;
-	align-items: center;
+	align-items: stretch;
 	gap: 0.5rem;
+	flex: 1;
+	min-width: 0;
 
 	.catalog-search-bar {
 		width: 100%;
@@ -126,11 +140,10 @@ const filteredRows = computed(() => {
 	}
 }
 
-.catalog-card {
-	border: 1px solid var(--border);
-	border-radius: 12px;
-	overflow: hidden;
-	background: var(--bg);
-	margin: 0rem;
+.cart-panel {
+	width: 320px;
+	flex-shrink: 0;
+	position: sticky;
+	top: 1rem;
 }
 </style>

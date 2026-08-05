@@ -1,11 +1,11 @@
 // ── Design tokens ────────────────────────────────────────────────
 @bg: #0d1117;
-@surface: #161b22;
-@surface2: #1e2530;
-@border: #2d3748;
-@teal: #00d4b8;
-@teal-dim: #00a896;
-@amber: #f5a623;
+@surface: #0808082c;
+@surface2: #0808082c;
+@border: #49453d;
+@teal: #fe631c;
+@teal-dim: #ac4516;
+@amber: #fe631c;
 @red: #ff4f4f;
 @text: #e6edf3;
 @text-muted: #8b949e;
@@ -22,8 +22,8 @@
 @text-muted-light: #6b5f52;
 
 // accent palette for light theme
-@accent-light: #3a6b4a; // forest green (replaces teal)
-@accent-dim-light: #2d5239; // darker forest green
+@accent-light: #b8540f; // burnt orange (replaces teal)
+@accent-dim-light: #8f4009; // darker burnt orange
 @amber-light: #b36a1a; // deeper amber/rust
 @red-light: #b83232; // deeper red
 @purple-light: #6b4fa8; // muted violet accent
@@ -31,8 +31,28 @@
 // ── Light selection accent ────────────────────────────────────────
 @highlight-light: #f26c1a;
 
+// ── App background gradients ─────────────────────────────────────
+@app-bg-dark: radial-gradient(
+		1500px 1000px at 100% 100%,
+		rgba(255, 122, 61, 0.16) 0%,
+		rgba(226, 67, 41, 0.09) 26%,
+		transparent 58%
+	),
+	radial-gradient(1200px 750px at 58% 118%, rgba(179, 156, 242, 0.14) 0%, transparent 62%),
+	linear-gradient(155deg, #0c0a12 0%, #15111e 48%, #150f1a 100%);
+
+@app-bg-light: radial-gradient(
+		1500px 1000px at 100% 100%,
+		rgba(255, 122, 61, 0.14) 0%,
+		rgba(226, 67, 41, 0.07) 26%,
+		transparent 58%
+	),
+	radial-gradient(1200px 750px at 58% 118%, rgba(179, 156, 242, 0.12) 0%, transparent 62%),
+	linear-gradient(155deg, #f5eee2 0%, #ede3d3 48%, #e8dfce 100%);
+
 // ── CSS custom properties (dark default) ─────────────────────────
 :root {
+	color-scheme: dark;
 	--bg: @bg;
 	--surface: @surface;
 	--surface2: @surface2;
@@ -46,10 +66,12 @@
 	--text-muted: @text-muted;
 	--highlight: @teal;
 	--highlight-glow: fade(@teal, 18%);
+	--app-bg: @app-bg-dark;
 }
 
 // ── Light theme ───────────────────────────────────────────────────
 [data-theme='light'] {
+	color-scheme: light;
 	--bg: @bg-light;
 	--surface: @surface-light;
 	--surface2: @surface2-light;
@@ -63,10 +85,12 @@
 	--text-muted: @text-muted-light;
 	--highlight: @highlight-light;
 	--highlight-glow: fade(@highlight-light, 22%);
+	--app-bg: @app-bg-light;
 }
 
 @media (prefers-color-scheme: light) {
 	:root:not([data-theme='dark']) {
+		color-scheme: light;
 		--bg: @bg-light;
 		--surface: @surface-light;
 		--surface2: @surface2-light;
@@ -80,6 +104,7 @@
 		--text-muted: @text-muted-light;
 		--highlight: @highlight-light;
 		--highlight-glow: fade(@highlight-light, 22%);
+		--app-bg: @app-bg-light;
 	}
 }
 
@@ -93,7 +118,9 @@
 
 body {
 	min-height: 100vh;
-	background: var(--bg);
+	background: var(--app-bg);
+	background-color: var(--bg);
+	background-attachment: fixed;
 	color: var(--text);
 	font-family: @sans;
 	font-size: 15px;
