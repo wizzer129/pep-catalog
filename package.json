@@ -9,7 +9,9 @@
 		"preview": "vite preview",
 		"test:unit": "vitest",
 		"lint": "eslint . --fix --cache",
-		"format": "prettier --write --experimental-cli src/"
+		"format": "prettier --write --experimental-cli src/",
+		"deploy": "npm run build && wrangler deploy",
+		"cf:dev": "wrangler dev"
 	},
 	"dependencies": {
 		"normalize.css": "8.0.1",
@@ -32,7 +34,8 @@
 		"vite": "8.0.16",
 		"vite-plugin-vue-devtools": "8.1.2",
 		"vitest": "4.1.9",
-		"vue-eslint-parser": "10.4.1"
+		"vue-eslint-parser": "10.4.1",
+		"wrangler": "4.119.0"
 	},
 	"engines": {
 		"node": "22.18.0 || >=24.12.0"
