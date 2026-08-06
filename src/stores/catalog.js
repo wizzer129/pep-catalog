@@ -20,7 +20,9 @@ export const useCatalogStore = defineStore('catalog', () => {
 	}
 
 	// Ordered list of vendor keys
-	const vendorKeys = computed(() => Object.keys(suppliers.value).sort((a, b) => a.localeCompare(b)));
+	const vendorKeys = computed(() =>
+		Object.keys(suppliers.value).sort((a, b) => a.localeCompare(b)),
+	);
 
 	// Unique product+mg combinations, sorted alphabetically. Row key === "product_name mg".
 	const productRows = computed(() => {

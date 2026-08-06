@@ -7,11 +7,7 @@ export const useCartStore = defineStore('cart', () => {
 	const saved = localStorage.getItem(STORAGE_KEY);
 	const items = shallowRef(saved ? JSON.parse(saved) : {});
 
-	watch(
-		items,
-		(val) => localStorage.setItem(STORAGE_KEY, JSON.stringify(val)),
-		{ deep: true },
-	);
+	watch(items, (val) => localStorage.setItem(STORAGE_KEY, JSON.stringify(val)), { deep: true });
 
 	function addItem(vendorKey, row, priceEntry) {
 		const vendor = { ...(items.value[vendorKey] ?? {}) };
