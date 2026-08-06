@@ -280,6 +280,7 @@ const usVendorTotals = computed(() => vendorTotals.value.filter((r) => r.region 
 
 	.vendor-picker.open & {
 		border-color: var(--teal-dim);
+		backdrop-filter: blur(16px);
 	}
 }
 
@@ -297,6 +298,8 @@ const usVendorTotals = computed(() => vendorTotals.value.filter((r) => r.region 
 	max-height: 220px;
 	overflow-y: auto;
 	background: var(--surface2);
+	backdrop-filter: blur(16px);
+
 	border: 1px solid var(--border);
 	border-radius: 6px;
 	z-index: 20;

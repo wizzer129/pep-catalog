@@ -124,7 +124,8 @@ function onBlur() {
 	right: 0;
 	max-height: 240px;
 	overflow-y: auto;
-	background: var(--surface2);
+	background: var(--surface);
+	backdrop-filter: blur(16px);
 	border: 1px solid var(--border);
 	border-radius: 6px;
 	z-index: 20;

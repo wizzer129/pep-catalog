@@ -21,5 +21,10 @@ main {
 	margin: 0 auto;
 	padding: 1.5rem 2rem;
 	width: 100%;
+	@media (max-width: 980px) {
+		width: 100vw;
+		margin: 0 0;
+		padding: 0.75rem 1rem;
+	}
 }
 </style>

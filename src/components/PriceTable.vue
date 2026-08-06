@@ -153,16 +153,13 @@ const lowestPriceMap = computed(() => {
 			{{ rows.length }}
 		</span>
 		<div class="page-controls">
-			<button :disabled="page === 1" @click="page--">‹</button>
-			<button
-				v-for="p in totalPages"
-				:key="p"
-				:class="{ current: p === page }"
-				@click="page = p"
-			>
-				{{ p }}
+			<button :disabled="page === 1" title="First page" @click="page = 1">«</button>
+			<button :disabled="page === 1" title="Previous page" @click="page--">‹</button>
+			<span class="page-current">Page {{ page }} of {{ totalPages }}</span>
+			<button :disabled="page === totalPages" title="Next page" @click="page++">›</button>
+			<button :disabled="page === totalPages" title="Last page" @click="page = totalPages">
+				»
 			</button>
-			<button :disabled="page === totalPages" @click="page++">›</button>
 		</div>
 	</div>
 </template>
@@ -402,10 +399,14 @@ td {
 // ── Pagination ────────────────────────────────────────────────────
 .pagination {
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-between;
+	row-gap: 0.5rem;
 	padding: 0.85rem 1.5rem;
 	border-top: 2px solid var(--border);
+	border-bottom-left-radius: 12px;
+	border-bottom-right-radius: 12px;
 	background: var(--surface2);
 	font-size: 0.8rem;
 	color: var(--text-muted);
@@ -413,7 +414,13 @@ td {
 
 .page-controls {
 	display: flex;
+	align-items: center;
 	gap: 0.3rem;
+
+	.page-current {
+		padding: 0 0.4rem;
+		white-space: nowrap;
+	}
 
 	button {
 		min-width: 2.1rem;
@@ -450,6 +457,57 @@ td {
 			font-weight: 700;
 			box-shadow: 0 2px 8px var(--highlight-glow);
 		}
+	}
+}
+
+@media (max-width: 980px) {
+	table {
+		font-size: 0.74rem;
+	}
+
+	th {
+		padding: 0.55rem 0.75rem;
+		font-size: 0.6rem;
+	}
+
+	td {
+		padding: 0.45rem 0.75rem;
+
+		&.col-product {
+			font-size: 0.76rem;
+
+			.col-mg {
+				font-size: 0.6rem;
+				margin-left: 0.35rem;
+				padding: 0.02rem 0.32rem;
+			}
+		}
+
+		&.col-price {
+			font-size: 0.72rem;
+		}
+
+		&.best {
+			font-size: 0.74rem;
+		}
+	}
+
+	.sort-btn {
+		width: 15px;
+		height: 15px;
+		font-size: 0.6rem;
+	}
+
+	.pagination {
+		padding: 0.6rem 0.85rem;
+		font-size: 0.72rem;
+	}
+
+	.page-controls button {
+		min-width: 1.8rem;
+		height: 1.8rem;
+		padding: 0 0.35rem;
+		font-size: 0.72rem;
 	}
 }
 </style>
