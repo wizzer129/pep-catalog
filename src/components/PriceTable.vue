@@ -37,11 +37,30 @@ function cycleSort() {
 	page.value = 1;
 }
 
-const sortedRows = computed(() => {
-	if (!sortDir.value) return props.rows;
-	return [...props.rows].sort((a, b) =>
-		sortDir.value === 'asc' ? a.key.localeCompare(b.key) : b.key.localeCompare(a.key),
-	);
+function mgValue(mg) {
+	const n = parseFloat(mg);
+	return isNaN(n) ? 0 : n;
+}
+
+// Break the flat "product + mg" row list down into one group per product,
+// each holding its own variants (mg × vials) sorted low to high.
+const productGroups = computed(() => {
+	const order = [];
+	const byProduct = new Map();
+	for (const row of props.rows) {
+		if (!byProduct.has(row.product_name)) {
+			byProduct.set(row.product_name, []);
+			order.push(row.product_name);
+		}
+		byProduct.get(row.product_name).push(row);
+	}
+
+	order.sort((a, b) => (sortDir.value === 'desc' ? b.localeCompare(a) : a.localeCompare(b)));
+
+	return order.map((product_name) => ({
+		product_name,
+		variants: [...byProduct.get(product_name)].sort((a, b) => mgValue(a.mg) - mgValue(b.mg)),
+	}));
 });
 
 watch(
@@ -51,12 +70,22 @@ watch(
 	},
 );
 
-const totalPages = computed(() => Math.max(1, Math.ceil(props.rows.length / props.pageSize)));
+const totalPages = computed(() =>
+	Math.max(1, Math.ceil(productGroups.value.length / props.pageSize)),
+);
 
-const pageRows = computed(() => {
+const pageGroups = computed(() => {
 	const start = (page.value - 1) * props.pageSize;
-	return sortedRows.value.slice(start, start + props.pageSize);
+	return productGroups.value.slice(start, start + props.pageSize);
 });
+
+function vialsLabel(row) {
+	for (const v of props.vendors) {
+		const entry = props.priceMap[v]?.[row.key];
+		if (entry?.vials != null) return `${row.mg} × ${entry.vials} vials`;
+	}
+	return row.mg;
+}
 
 // Precompute lowest price per row key for "best price" highlighting.
 const lowestPriceMap = computed(() => {
@@ -74,83 +103,87 @@ const lowestPriceMap = computed(() => {
 </script>
 
 <template>
-	<div class="table-wrap">
-		<table>
-			<thead>
-				<tr>
-					<th class="col-product">
-						Product
-						<button
-							class="sort-btn"
-							@click="cycleSort"
-							:title="sortDir === 'asc' ? 'Sort Z→A' : 'Sort A→Z'"
-						>
-							<span v-if="sortDir === 'asc'">↑</span>
-							<span v-else-if="sortDir === 'desc'">↓</span>
-							<span v-else class="sort-idle">↕</span>
-						</button>
-					</th>
-					<th
-						v-for="(v, i) in vendors"
-						:key="v"
-						class="col-vendor"
-						:style="vendorColors[i] ? { color: vendorColors[i] } : {}"
-					>
-						{{ v.replace(/_/g, ' ') }}
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr v-if="pageRows.length === 0">
-					<td :colspan="1 + vendors.length" class="empty">
-						No products match your search.
-					</td>
-				</tr>
-				<tr v-for="row in pageRows" :key="row.key">
-					<td class="col-product" @click="addRowToCart(row)">
-						{{ row.product_name }} <span class="col-mg">{{ row.mg }}</span>
-						<button
-							v-if="isRowInCart(row)"
-							class="row-remove-btn"
-							title="Remove from cart"
-							@click.stop="removeRowFromCart(row)"
-						>
-							✕
-						</button>
-					</td>
-					<td
-						v-for="v in vendors"
-						:key="v"
-						class="col-price"
-						:class="{
-							best:
-								priceMap[v]?.[row.key] != null &&
-								priceMap[v][row.key].price === lowestPriceMap.get(row.key),
-						}"
-					>
-						<template v-if="priceMap[v]?.[row.key] != null">
+	<div class="toolbar">
+		<button
+			class="sort-btn"
+			@click="cycleSort"
+			:title="sortDir === 'asc' ? 'Sort Z→A' : 'Sort A→Z'"
+		>
+			<span v-if="sortDir === 'asc'">↑ A–Z</span>
+			<span v-else-if="sortDir === 'desc'">↓ Z–A</span>
+			<span v-else class="sort-idle">↕ Sort</span>
+		</button>
+	</div>
+
+	<div v-if="pageGroups.length === 0" class="empty">No products match your search.</div>
+
+	<div v-for="group in pageGroups" :key="group.product_name" class="product-section">
+		<h3 class="product-title">{{ group.product_name }}</h3>
+		<div class="table-wrap">
+			<table>
+				<thead>
+					<tr>
+						<th class="col-product">Quantity</th>
+						<th v-for="(v, i) in vendors" :key="v" class="col-vendor">
 							<span
-								class="price-wrap"
-								@click="cart.addItem(v, row, priceMap[v][row.key])"
+								v-if="vendorColors[i]"
+								class="vendor-dot"
+								:style="{ background: vendorColors[i] }"
+							></span>
+							{{ v.replace(/_/g, ' ') }}
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="row in group.variants" :key="row.key">
+						<td class="col-product" @click="addRowToCart(row)">
+							<span class="col-mg">{{ vialsLabel(row) }}</span>
+							<button
+								v-if="isRowInCart(row)"
+								class="row-remove-btn"
+								title="Remove from cart"
+								@click.stop="removeRowFromCart(row)"
 							>
-								${{ priceMap[v][row.key].price.toFixed(2) }}
-								<span class="tooltip"
-									>{{ priceMap[v][row.key].mg }} ×
-									{{ priceMap[v][row.key].vials }} vials</span
+								✕
+							</button>
+						</td>
+						<td
+							v-for="v in vendors"
+							:key="v"
+							class="col-price"
+							:class="{
+								best:
+									priceMap[v]?.[row.key] != null &&
+									priceMap[v][row.key].price === lowestPriceMap.get(row.key),
+							}"
+						>
+							<template v-if="priceMap[v]?.[row.key] != null">
+								<span
+									class="price-wrap"
+									@click="cart.addItem(v, row, priceMap[v][row.key])"
 								>
-							</span>
-						</template>
-						<span v-else class="na">N/A</span>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+									<span class="price-icon">🛒</span>
+									${{ priceMap[v][row.key].price.toFixed(2) }}
+									<span class="tooltip"
+										>{{ priceMap[v][row.key].mg }} ×
+										{{ priceMap[v][row.key].vials }} vials</span
+									>
+								</span>
+							</template>
+							<span v-else class="na">—</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 
 	<div class="pagination">
 		<span class="page-info">
-			{{ (page - 1) * pageSize + 1 }}–{{ Math.min(page * pageSize, rows.length) }} of
-			{{ rows.length }}
+			{{ pageGroups.length ? (page - 1) * pageSize + 1 : 0 }}–{{
+				Math.min(page * pageSize, productGroups.length)
+			}}
+			of {{ productGroups.length }} products
 		</span>
 		<div class="page-controls">
 			<button :disabled="page === 1" title="First page" @click="page = 1">«</button>
@@ -165,12 +198,31 @@ const lowestPriceMap = computed(() => {
 </template>
 
 <style scoped lang="less">
+.toolbar {
+	display: flex;
+	justify-content: flex-start;
+	margin-bottom: 0.5rem;
+}
+
+.product-section {
+	&:last-of-type {
+		margin-bottom: 0;
+	}
+}
+
+.product-title {
+	font-size: 1.25rem;
+	font-weight: 700;
+	color: var(--text);
+	margin: 0 0 0 0.5rem;
+}
+
 .table-wrap {
 	overflow-x: auto;
-	flex: 1;
 	scrollbar-color: var(--border) transparent;
 	scrollbar-width: thin;
 	border-radius: 12px;
+	border: 1px solid var(--border);
 }
 
 table {
@@ -205,7 +257,21 @@ th {
 	}
 
 	&.col-vendor {
-		text-align: right;
+		text-align: center;
+		white-space: normal;
+		overflow-wrap: break-word;
+		min-width: 76px;
+		max-width: 110px;
+		line-height: 1.3;
+
+		.vendor-dot {
+			display: inline-block;
+			width: 6px;
+			height: 6px;
+			border-radius: 50%;
+			margin-right: 0.4rem;
+			vertical-align: middle;
+		}
 	}
 
 	&.col-product {
@@ -223,16 +289,14 @@ th {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	margin-left: 0.4rem;
-	width: 18px;
-	height: 18px;
+	padding: 0.35rem 0.7rem;
 	background: var(--surface);
 	border: 1px solid var(--border);
-	border-radius: 4px;
+	border-radius: 6px;
 	color: var(--text-muted);
-	font-size: 0.7rem;
+	font-size: 0.75rem;
+	font-weight: 600;
 	cursor: pointer;
-	vertical-align: middle;
 	transition:
 		border-color 0.15s,
 		color 0.15s;
@@ -243,7 +307,7 @@ th {
 	}
 
 	.sort-idle {
-		opacity: 0.45;
+		opacity: 0.7;
 	}
 }
 
@@ -272,7 +336,7 @@ tbody tr {
 }
 
 td {
-	padding: 0.65rem 1.25rem;
+	padding: 0.4rem 1.25rem;
 	border-bottom: 1px solid var(--border);
 	color: var(--text);
 	transition: background 0.12s;
@@ -291,15 +355,10 @@ td {
 
 		.col-mg {
 			display: inline-block;
-			font-size: 0.68rem;
+			font-size: 0.85rem;
 			color: var(--text);
-			background: var(--teal);
-			font-weight: 600;
-			margin-left: 0.5rem;
-			padding: 0.05rem 0.4rem;
-			border-radius: 999px;
+			font-weight: 500;
 			vertical-align: middle;
-			opacity: 0.85;
 		}
 
 		.row-remove-btn {
@@ -322,29 +381,39 @@ td {
 	}
 
 	&.col-price {
-		text-align: right;
+		text-align: center;
 		font-family: 'IBM Plex Mono', monospace;
 		font-size: 0.82rem;
 		letter-spacing: -0.01em;
 	}
 
 	&.best {
-		color: #5db87a;
-		font-weight: 700;
 		font-size: 0.86rem;
-	}
-
-	[data-theme='light'] &.best {
-		color: #3a7d52;
 	}
 }
 
 .price-wrap {
 	position: relative;
-	display: inline-block;
+	display: inline-flex;
+	align-items: center;
 	cursor: pointer;
-	border-radius: 4px;
-	transition: background 0.12s;
+	border-radius: 999px;
+	padding: 0.2rem 0.2rem;
+	background: var(--surface2);
+	border: 1px solid var(--border);
+	transition:
+		background 0.12s,
+		border-color 0.12s;
+
+	.price-icon {
+		font-size: 0.72rem;
+	}
+
+	.best & {
+		background: linear-gradient(135deg, transparent, var(--surface3));
+		border-color: var(--teal);
+		color: #fff;
+	}
 
 	&:hover {
 		background: color-mix(in srgb, var(--teal) 16%, transparent);
@@ -466,25 +535,35 @@ td {
 	}
 
 	th {
-		padding: 0.55rem 0.75rem;
+		padding: 0.2rem 0.5rem;
 		font-size: 0.6rem;
+
+		&.col-vendor {
+			min-width: 56px;
+			max-width: 76px;
+		}
 	}
 
 	td {
-		padding: 0.45rem 0.75rem;
+		padding: 0.2rem 0.2rem;
 
 		&.col-product {
 			font-size: 0.76rem;
 
 			.col-mg {
-				font-size: 0.6rem;
-				margin-left: 0.35rem;
-				padding: 0.02rem 0.32rem;
+				font-size: 0.7rem;
+				margin-left: 0.3rem;
+				padding: 0.01rem 0.1rem;
 			}
 		}
 
 		&.col-price {
 			font-size: 0.72rem;
+
+			.price-wrap {
+				padding: 0.1rem 0.45rem;
+				gap: 0.2rem;
+			}
 		}
 
 		&.best {
@@ -493,9 +572,9 @@ td {
 	}
 
 	.sort-btn {
-		width: 15px;
-		height: 15px;
-		font-size: 0.6rem;
+		padding: 0.3rem 0.6rem;
+		font-size: 0.68rem;
+		white-space: nowrap;
 	}
 
 	.pagination {

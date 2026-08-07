@@ -2,6 +2,7 @@
 import { shallowRef, computed, reactive, watch, onMounted, onBeforeUnmount } from 'vue';
 import { useCatalogStore } from '../stores/catalog';
 import { useCartStore } from '../stores/cart';
+import { vendorColor } from '../constants/vendorColors.js';
 import VendorFilter from '../components/VendorFilter.vue';
 import SearchBar from '../components/SearchBar.vue';
 import PriceTable from '../components/PriceTable.vue';
@@ -38,26 +39,10 @@ function toggleVendor(key) {
 	localStorage.setItem(STORAGE_KEY, JSON.stringify([...selectedVendors]));
 }
 
-const VENDOR_COLORS = [
-	'#6b9fff',
-	'#a67de8',
-	'#f5a030',
-	'#4dbf7a',
-	'#ff6b6b',
-	'#36c5e8',
-	'#cc8855',
-	'#8bc34a',
-	'#d46bd4',
-	'#5b9bd5',
-];
-
 const activeVendors = computed(() => catalog.vendorKeys.filter((k) => selectedVendors.has(k)));
 
 const activeVendorColors = computed(() =>
-	activeVendors.value.map((k) => {
-		const idx = catalog.vendorKeys.indexOf(k) % VENDOR_COLORS.length;
-		return VENDOR_COLORS[idx < 0 ? 0 : idx];
-	}),
+	activeVendors.value.map((k) => vendorColor(catalog.vendorKeys, k)),
 );
 
 const savedProducts = localStorage.getItem(SEARCH_STORAGE_KEY);
@@ -65,7 +50,7 @@ const selectedProducts = shallowRef(savedProducts ? JSON.parse(savedProducts) : 
 
 watch(selectedProducts, (val) => localStorage.setItem(SEARCH_STORAGE_KEY, JSON.stringify(val)));
 
-const productNames = computed(() => catalog.productRows.map((r) => r.key));
+const productNames = computed(() => [...new Set(catalog.productRows.map((r) => r.product_name))]);
 
 const filteredRows = computed(() => {
 	const picks = selectedProducts.value;
@@ -74,7 +59,7 @@ const filteredRows = computed(() => {
 
 	return catalog.productRows.filter((r) => {
 		if (!vendors.some((v) => priceMap[v]?.[r.key] != null)) return false;
-		return !picks.length || picks.includes(r.key);
+		return !picks.length || picks.includes(r.product_name);
 	});
 });
 

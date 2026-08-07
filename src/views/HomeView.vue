@@ -24,6 +24,21 @@ function compare() {
 
 const hasSelection = computed(() => selected.value.size > 0);
 
+const allSelected = computed(
+	() => vendorKeys.value.length > 0 && vendorKeys.value.every((k) => selected.value.has(k)),
+);
+
+function toggleSelectAll() {
+	selected.value = allSelected.value ? new Set() : new Set(vendorKeys.value);
+}
+
+const selectionLabel = computed(() => {
+	const n = selected.value.size;
+	if (n === 0) return 'No vendors selected';
+	if (n === 1) return '1 vendor selected';
+	return `${n} vendors selected`;
+});
+
 const AVATAR_COLORS = [
 	{ bg: '#6b9fff', fg: '#0d1117' },
 	{ bg: '#a67de8', fg: '#0d1117' },
@@ -72,6 +87,21 @@ function displayName(key, vendor) {
 		<div v-else-if="catalog.error" class="state-msg error">{{ catalog.error }}</div>
 
 		<template v-else>
+			<div class="vendor-actions">
+				<p class="vendor-actions-intro">
+					Pick <strong>one vendor</strong> to build an order, or select
+					<strong>two or more</strong> to compare pricing side by side.
+				</p>
+				<div class="vendor-actions-row">
+					<button type="button" class="btn-browse" @click="compare">
+						Browse &amp; Order <span class="arrow">→</span>
+					</button>
+					<button type="button" class="btn-select-all" @click="toggleSelectAll">
+						{{ allSelected ? 'Deselect all' : 'Select all' }}
+					</button>
+				</div>
+			</div>
+
 			<div class="grid">
 				<label
 					v-for="(vendor, key) in catalog.suppliers"
@@ -114,9 +144,7 @@ function displayName(key, vendor) {
 			</div>
 
 			<div class="footer-bar">
-				<span class="selection-count">
-					{{ selected.size }} vendor{{ selected.size === 1 ? '' : 's' }} selected
-				</span>
+				<span class="selection-count">{{ selectionLabel }}</span>
 				<button class="cta" :disabled="!hasSelection" @click="compare">
 					Compare vendors <span class="arrow">→</span>
 				</button>
@@ -263,6 +291,54 @@ function displayName(key, vendor) {
 	}
 }
 
+.vendor-actions {
+	margin-bottom: 1.75rem;
+}
+
+.vendor-actions-intro {
+	font-size: 0.85rem;
+	color: var(--text-muted);
+	margin-bottom: 0.75rem;
+
+	strong {
+		color: var(--highlight);
+	}
+}
+
+.vendor-actions-row {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+}
+
+.btn-select-all {
+	border: 1px solid var(--border);
+	background: transparent;
+	color: var(--text);
+	font-size: 0.9rem;
+	font-weight: 600;
+	padding: 0.6rem 1.4rem;
+	border-radius: 8px;
+	cursor: pointer;
+}
+
+.selection-count {
+	font-size: 0.85rem;
+	color: var(--text-muted);
+}
+
+@media (max-width: 640px) {
+	.vendor-actions-row {
+		flex-wrap: wrap;
+	}
+
+	.btn-browse,
+	.btn-select-all {
+		width: 100%;
+		justify-content: center;
+	}
+}
+
 .footer-bar {
 	position: fixed;
 	bottom: 0;
@@ -278,11 +354,7 @@ function displayName(key, vendor) {
 	backdrop-filter: blur(8px);
 }
 
-.selection-count {
-	font-size: 0.85rem;
-	color: var(--text-muted);
-}
-
+.btn-browse,
 .cta {
 	display: flex;
 	align-items: center;

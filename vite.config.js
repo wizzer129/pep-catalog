@@ -12,4 +12,10 @@ export default defineConfig({
 			'@': fileURLToPath(new URL('./src', import.meta.url)),
 		},
 	},
+	build: {
+		// lightningcss (the default CSS minifier) collapses backdrop-filter and
+		// -webkit-backdrop-filter into just the -webkit- prefix, which non-Safari
+		// browsers ignore. esbuild's minifier keeps both declarations as written.
+		cssMinify: 'esbuild',
+	},
 });

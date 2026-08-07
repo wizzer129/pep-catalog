@@ -1,4 +1,7 @@
 <script setup>
+import { shallowRef } from 'vue';
+import { vendorColor } from '../constants/vendorColors.js';
+
 const props = defineProps({
 	vendors: { type: Array, required: true },
 	selected: { type: Object, required: true },
@@ -6,42 +9,43 @@ const props = defineProps({
 
 const emit = defineEmits(['toggle']);
 
-const CHIP_COLORS = [
-	{ border: '#6b9fff', text: '#6b9fff', bg: 'rgba(107,159,255,0.13)' },
-	{ border: '#a67de8', text: '#a67de8', bg: 'rgba(166,125,232,0.13)' },
-	{ border: '#f5a030', text: '#f5a030', bg: 'rgba(245,160,48,0.13)' },
-	{ border: '#4dbf7a', text: '#4dbf7a', bg: 'rgba(77,191,122,0.13)' },
-	{ border: '#ff6b6b', text: '#ff6b6b', bg: 'rgba(255,107,107,0.13)' },
-	{ border: '#36c5e8', text: '#36c5e8', bg: 'rgba(54,197,232,0.13)' },
-	{ border: '#cc8855', text: '#cc8855', bg: 'rgba(204,136,85,0.13)' },
-	{ border: '#8bc34a', text: '#8bc34a', bg: 'rgba(139,195,74,0.13)' },
-	{ border: '#d46bd4', text: '#d46bd4', bg: 'rgba(212,107,212,0.13)' },
-	{ border: '#5b9bd5', text: '#5b9bd5', bg: 'rgba(91,155,213,0.13)' },
-];
+const expanded = shallowRef(false);
 
 function chipColor(vendor) {
-	const idx = props.vendors.indexOf(vendor) % CHIP_COLORS.length;
-	return CHIP_COLORS[idx < 0 ? 0 : idx];
+	return vendorColor(props.vendors, vendor);
 }
 </script>
 
 <template>
-	<div class="vendor-filter">
-		<button
-			v-for="vendor in vendors"
-			:key="vendor"
-			class="chip"
-			:class="{ active: selected.has(vendor) }"
-			@click="emit('toggle', vendor)"
-		>
-			<span class="chip-dot" :style="{ background: chipColor(vendor).border }"></span>
-			{{ vendor.replace(/_/g, ' ') }}
-			<span v-if="selected.has(vendor)" class="chip-x">✕</span>
+	<div class="vendor-filter-wrap">
+		<div class="vendor-filter" :class="{ expanded }">
+			<button
+				v-for="vendor in vendors"
+				:key="vendor"
+				class="chip"
+				:class="{ active: selected.has(vendor) }"
+				@click="emit('toggle', vendor)"
+			>
+				<span class="chip-dot" :style="{ background: chipColor(vendor) }"></span>
+				{{ vendor.replace(/_/g, ' ') }}
+				<span v-if="selected.has(vendor)" class="chip-x">✕</span>
+			</button>
+		</div>
+		<button type="button" class="expand-toggle" @click="expanded = !expanded">
+			{{ expanded ? 'Show less' : `Show all (${vendors.length})` }}
 		</button>
+		<span class="selected-count">{{ selected.size }} selected</span>
 	</div>
 </template>
 
 <style scoped lang="less">
+.vendor-filter-wrap {
+	.expand-toggle,
+	.selected-count {
+		display: none;
+	}
+}
+
 .vendor-filter {
 	display: flex;
 	flex-wrap: wrap;
@@ -88,6 +92,59 @@ function chipColor(vendor) {
 		opacity: 1;
 		color: var(--text);
 		background: color-mix(in srgb, var(--surface) 90%, transparent);
+	}
+}
+
+@media (max-width: 640px) {
+	.vendor-filter-wrap {
+		position: relative;
+		text-align: center;
+
+		.expand-toggle {
+			display: block;
+			margin: 0 auto;
+			padding: 0.3rem 0.9rem;
+			background: var(--surface);
+			border: 1px solid var(--border);
+			border-radius: 999px;
+			color: var(--teal);
+			font-size: 0.76rem;
+			font-weight: 600;
+			cursor: pointer;
+		}
+
+		.selected-count {
+			display: block;
+			margin-top: 0.35rem;
+			font-size: 0.72rem;
+			color: var(--text-muted);
+		}
+	}
+
+	.vendor-filter {
+		max-height: 5.6rem;
+		overflow: hidden;
+		position: relative;
+		margin-bottom: 0.5rem;
+
+		&::after {
+			content: '';
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			height: 1.5rem;
+			background: linear-gradient(to bottom, transparent, var(--bg));
+			pointer-events: none;
+		}
+
+		&.expanded {
+			max-height: none;
+
+			&::after {
+				display: none;
+			}
+		}
 	}
 }
 </style>
