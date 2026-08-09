@@ -12310,5 +12310,121 @@
 				"vials": 10
 			}
 		]
+	},
+	"MPS US Warehouse": {
+		"name": "MPS US Warehouse",
+		"region": "US",
+		"contact": {
+			"website": "https://m-mps.com",
+			"whatsapp": "+1 (725) 244-8930",
+			"email": "elsa@m-mps.com",
+			"shipping_fee": 25
+		},
+		"products": [
+			{
+				"product_name": "Tirzepatide",
+				"nick_name": "T15",
+				"specification": "15mg*10vials",
+				"price_per_kit": 75,
+				"mg": "15mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Tirzepatide",
+				"nick_name": "T30",
+				"specification": "30mg*10vials",
+				"price_per_kit": 100,
+				"mg": "30mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Retatrutide",
+				"nick_name": "RT15",
+				"specification": "15mg*10vials",
+				"price_per_kit": 120,
+				"mg": "15mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Retatrutide",
+				"nick_name": "RT30",
+				"specification": "30mg*10vials",
+				"price_per_kit": 205,
+				"mg": "30mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Retatrutide",
+				"nick_name": "RT50",
+				"specification": "50mg*10vials",
+				"price_per_kit": 315,
+				"mg": "50mg",
+				"vials": 10
+			},
+			{
+				"product_name": "KLOW (BPC-157 + GHK-Cu + TB-500 + KPV)",
+				"nick_name": "KLOW80",
+				"specification": "80mg*10vials",
+				"price_per_kit": 180,
+				"mg": "80mg",
+				"vials": 10
+			},
+			{
+				"product_name": "NAD+ Buffered",
+				"nick_name": "NAD500B",
+				"specification": "500mg*10vials",
+				"price_per_kit": 70,
+				"mg": "500mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Epithalon",
+				"nick_name": "EPI40",
+				"specification": "40mg*10vials",
+				"price_per_kit": 175,
+				"mg": "40mg",
+				"vials": 10
+			},
+			{
+				"product_name": "GHK-Cu",
+				"nick_name": "CU50",
+				"specification": "50mg*10vials",
+				"price_per_kit": 50,
+				"mg": "50mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Bacteriostatic Water",
+				"nick_name": "BA3",
+				"specification": "3ml*10vials",
+				"price_per_kit": 18,
+				"mg": "3ml",
+				"vials": 10
+			},
+			{
+				"product_name": "Bacteriostatic Water",
+				"nick_name": "BA10",
+				"specification": "10ml*10vials",
+				"price_per_kit": 27,
+				"mg": "10ml",
+				"vials": 10
+			},
+			{
+				"product_name": "BPC-157 + TB-500",
+				"nick_name": "TB10/BP10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 160,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Retatrutide + Cagrilintide",
+				"nick_name": "RT10/CAGR3",
+				"specification": "10mg*10vials",
+				"price_per_kit": 180,
+				"mg": "10mg",
+				"vials": 10
+			}
+		]
 	}
 }
