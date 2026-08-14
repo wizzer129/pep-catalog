@@ -9760,7 +9760,9 @@
 		"region": "US",
 		"contact": {
 			"whatsapp": "+1 (725) 244-8930",
-			"shipping_fee": 30
+			"shipping_fee": 30,
+			"shipping_note": "3-Day Delivery; FREE shipping on orders $500+; 10% OFF orders $1,000+",
+			"payment_methods": "Alibaba, PayPal, Credit Cards, Apple Pay, Google Pay, Wire Transfer, BTC, USDT, USDC"
 		},
 		"products": [
 			{
@@ -9821,14 +9823,6 @@
 			},
 			{
 				"product_name": "Semaglutide",
-				"nick_name": "SM20",
-				"specification": "20mg*10vials",
-				"price_per_kit": 70,
-				"mg": "20mg",
-				"vials": 10
-			},
-			{
-				"product_name": "Semaglutide",
 				"nick_name": "SM30",
 				"specification": "30mg*10vials",
 				"price_per_kit": 80,
@@ -9847,7 +9841,7 @@
 				"product_name": "Tirzepatide",
 				"nick_name": "TR15",
 				"specification": "15mg*10vials",
-				"price_per_kit": 80,
+				"price_per_kit": 90,
 				"mg": "15mg",
 				"vials": 10
 			},
@@ -9855,7 +9849,7 @@
 				"product_name": "Tirzepatide",
 				"nick_name": "TR20",
 				"specification": "20mg*10vials",
-				"price_per_kit": 90,
+				"price_per_kit": 110,
 				"mg": "20mg",
 				"vials": 10
 			},
@@ -9863,7 +9857,7 @@
 				"product_name": "Tirzepatide",
 				"nick_name": "TR30",
 				"specification": "30mg*10vials",
-				"price_per_kit": 110,
+				"price_per_kit": 130,
 				"mg": "30mg",
 				"vials": 10
 			},
@@ -9900,6 +9894,38 @@
 				"vials": 10
 			},
 			{
+				"product_name": "HGH",
+				"nick_name": "H10",
+				"specification": "10iu*10vials",
+				"price_per_kit": 80,
+				"mg": "10iu",
+				"vials": 10
+			},
+			{
+				"product_name": "HGH",
+				"nick_name": "H15",
+				"specification": "15iu*10vials",
+				"price_per_kit": 100,
+				"mg": "15iu",
+				"vials": 10
+			},
+			{
+				"product_name": "HGH",
+				"nick_name": "H24",
+				"specification": "24iu*10vials",
+				"price_per_kit": 160,
+				"mg": "24iu",
+				"vials": 10
+			},
+			{
+				"product_name": "HGH",
+				"nick_name": "H36",
+				"specification": "36iu*10vials",
+				"price_per_kit": 200,
+				"mg": "36iu",
+				"vials": 10
+			},
+			{
 				"product_name": "NAD+",
 				"nick_name": "NJ100",
 				"specification": "100mg*10vials",
@@ -9924,22 +9950,6 @@
 				"vials": 10
 			},
 			{
-				"product_name": "HCG",
-				"nick_name": "G2K",
-				"specification": "2000IU*10vials",
-				"price_per_kit": 60,
-				"mg": "2000IU",
-				"vials": 10
-			},
-			{
-				"product_name": "HCG",
-				"nick_name": "G5K",
-				"specification": "5000IU*10vials",
-				"price_per_kit": 100,
-				"mg": "5000IU",
-				"vials": 10
-			},
-			{
 				"product_name": "IGF-1 LR3",
 				"nick_name": "IG01",
 				"specification": "0.1mg*10vials",
@@ -9952,14 +9962,6 @@
 				"nick_name": "BB10",
 				"specification": "10mg*10vials",
 				"price_per_kit": 130,
-				"mg": "10mg",
-				"vials": 10
-			},
-			{
-				"product_name": "MOTS-c",
-				"nick_name": "MS10",
-				"specification": "10mg*10vials",
-				"price_per_kit": 80,
 				"mg": "10mg",
 				"vials": 10
 			},
@@ -9993,22 +9995,6 @@
 				"specification": "70mg*10vials",
 				"price_per_kit": 190,
 				"mg": "70mg",
-				"vials": 10
-			},
-			{
-				"product_name": "KLOW (BPC-157 + GHK-Cu + TB-500 + KPV)",
-				"nick_name": "BBKG80",
-				"specification": "80mg*10vials",
-				"price_per_kit": 190,
-				"mg": "80mg",
-				"vials": 10
-			},
-			{
-				"product_name": "Tesamorelin",
-				"nick_name": "TSM10",
-				"specification": "10mg*10vials",
-				"price_per_kit": 200,
-				"mg": "10mg",
 				"vials": 10
 			},
 			{
@@ -10048,6 +10034,14 @@
 				"nick_name": "2S10",
 				"specification": "10mg*10vials",
 				"price_per_kit": 110,
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Melanotan II (MT-2)",
+				"nick_name": "ML10",
+				"specification": "10mg*10vials",
+				"price_per_kit": 60,
 				"mg": "10mg",
 				"vials": 10
 			},
