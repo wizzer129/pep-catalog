@@ -47,9 +47,17 @@ export const useCatalogStore = defineStore('catalog', () => {
 			map[vKey] = {};
 			for (const p of vendor.products) {
 				const raw = p.price_per_kit;
-				// price_per_kit is sometimes { retail, wholesale } instead of a plain number
-				const price = Number(typeof raw === 'object' && raw !== null ? raw.retail : raw);
-				if (isNaN(price)) continue;
+				// price_per_kit is sometimes an object instead of a plain number:
+				// { retail, wholesale }, { USD, CAD }, or { "1_kit", "20_kit", "50_kit" }
+				let price;
+				if (typeof raw === 'object' && raw !== null) {
+					if (raw.retail != null) price = Number(raw.retail);
+					else if (raw.USD != null) price = Number(raw.USD);
+					else if (raw['1_kit'] != null) price = Number(raw['1_kit']);
+				} else {
+					price = Number(raw);
+				}
+				if (price == null || isNaN(price)) continue;
 				const key = `${p.product_name} ${p.mg}`;
 				const existing = map[vKey][key];
 				if (existing === undefined || price < existing.price) {
