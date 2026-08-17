@@ -7815,8 +7815,8 @@
 				"nick_name": "NJ1000",
 				"specification": "1000mg*10vials",
 				"price_per_kit": {
-					"USD": 153,
-					"CAD": 212
+					"USD": 176,
+					"CAD": 245
 				},
 				"mg": "1000mg",
 				"vials": 10
@@ -8020,6 +8020,17 @@
 				"vials": 10
 			},
 			{
+				"product_name": "Cerebrolysin",
+				"nick_name": "CBL60",
+				"specification": "60mg*6vials",
+				"price_per_kit": {
+					"USD": 29,
+					"CAD": 41
+				},
+				"mg": "60mg",
+				"vials": 6
+			},
+			{
 				"product_name": "Sermorelin Acetate",
 				"nick_name": "SMO5",
 				"specification": "5mg*10vials",
@@ -8211,8 +8222,8 @@
 				"nick_name": "ET50",
 				"specification": "50mg*10vials",
 				"price_per_kit": {
-					"USD": 200,
-					"CAD": 278
+					"USD": 206,
+					"CAD": 286
 				},
 				"mg": "50mg",
 				"vials": 10
@@ -8277,8 +8288,8 @@
 				"nick_name": "CND10",
 				"specification": "10mg*10vials",
 				"price_per_kit": {
-					"USD": 171,
-					"CAD": 237
+					"USD": 176,
+					"CAD": 245
 				},
 				"mg": "10mg",
 				"vials": 10
@@ -8336,6 +8347,17 @@
 					"CAD": 73
 				},
 				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "SLU-PP-332",
+				"nick_name": "322",
+				"specification": "5mg*10vials",
+				"price_per_kit": {
+					"USD": 118,
+					"CAD": 163
+				},
+				"mg": "5mg",
 				"vials": 10
 			},
 			{
@@ -8405,12 +8427,23 @@
 				"vials": 10
 			},
 			{
+				"product_name": "Hyaluronic Acid",
+				"nick_name": "HA5",
+				"specification": "5mg*1vials",
+				"price_per_kit": {
+					"USD": 24,
+					"CAD": 33
+				},
+				"mg": "5mg",
+				"vials": 1
+			},
+			{
 				"product_name": "Oxytocin",
 				"nick_name": "OT2",
 				"specification": "2mg*10vials",
 				"price_per_kit": {
-					"USD": 38,
-					"CAD": 53
+					"USD": 44,
+					"CAD": 61
 				},
 				"mg": "2mg",
 				"vials": 10
@@ -8422,6 +8455,17 @@
 				"price_per_kit": {
 					"USD": 65,
 					"CAD": 90
+				},
+				"mg": "10mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Ara-290",
+				"nick_name": "RA10",
+				"specification": "10mg*10vials",
+				"price_per_kit": {
+					"USD": 74,
+					"CAD": 102
 				},
 				"mg": "10mg",
 				"vials": 10
@@ -8524,6 +8568,28 @@
 				},
 				"mg": "3ml",
 				"vials": 1
+			},
+			{
+				"product_name": "Pinealon",
+				"nick_name": "PI5",
+				"specification": "5mg*10vials",
+				"price_per_kit": {
+					"USD": 47,
+					"CAD": 65
+				},
+				"mg": "5mg",
+				"vials": 10
+			},
+			{
+				"product_name": "Pinealon",
+				"nick_name": "PI10",
+				"specification": "10mg*10vials",
+				"price_per_kit": {
+					"USD": 74,
+					"CAD": 102
+				},
+				"mg": "10mg",
+				"vials": 10
 			},
 			{
 				"product_name": "Pinealon",
