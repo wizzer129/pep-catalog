@@ -57,10 +57,22 @@ const productGroups = computed(() => {
 
 	order.sort((a, b) => (sortDir.value === 'desc' ? b.localeCompare(a) : a.localeCompare(b)));
 
-	return order.map((product_name) => ({
-		product_name,
-		variants: [...byProduct.get(product_name)].sort((a, b) => mgValue(a.mg) - mgValue(b.mg)),
-	}));
+	return order.map((product_name) => {
+		const variants = [...byProduct.get(product_name)].sort(
+			(a, b) => mgValue(a.mg) - mgValue(b.mg),
+		);
+		// Only keep vendor columns that price at least one variant of this
+		// product — a column of all dashes just adds noise.
+		const vendors = [];
+		const vendorColors = [];
+		props.vendors.forEach((v, i) => {
+			if (variants.some((row) => props.priceMap[v]?.[row.key] != null)) {
+				vendors.push(v);
+				vendorColors.push(props.vendorColors[i]);
+			}
+		});
+		return { product_name, variants, vendors, vendorColors };
+	});
 });
 
 watch(
@@ -124,11 +136,11 @@ const lowestPriceMap = computed(() => {
 				<thead>
 					<tr>
 						<th class="col-product">Quantity</th>
-						<th v-for="(v, i) in vendors" :key="v" class="col-vendor">
+						<th v-for="(v, i) in group.vendors" :key="v" class="col-vendor">
 							<span
-								v-if="vendorColors[i]"
+								v-if="group.vendorColors[i]"
 								class="vendor-dot"
-								:style="{ background: vendorColors[i] }"
+								:style="{ background: group.vendorColors[i] }"
 							></span>
 							{{ v.replace(/_/g, ' ') }}
 						</th>
@@ -148,7 +160,7 @@ const lowestPriceMap = computed(() => {
 							</button>
 						</td>
 						<td
-							v-for="v in vendors"
+							v-for="v in group.vendors"
 							:key="v"
 							class="col-price"
 							:class="{

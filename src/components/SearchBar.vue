@@ -19,6 +19,7 @@ const suggestions = computed(() => {
 
 function pick(name) {
 	selected.value = [...selected.value, name];
+	query.value = '';
 }
 
 function remove(name) {

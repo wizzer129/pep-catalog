@@ -41,8 +41,16 @@ function toggleVendor(key) {
 
 const activeVendors = computed(() => catalog.vendorKeys.filter((k) => selectedVendors.has(k)));
 
-const activeVendorColors = computed(() =>
-	activeVendors.value.map((k) => vendorColor(catalog.vendorKeys, k)),
+// Drop any vendor that has no price for a single one of the currently shown
+// rows — an all-dashes column carries no information.
+const visibleVendors = computed(() => {
+	const rows = filteredRows.value;
+	const priceMap = catalog.priceMap;
+	return activeVendors.value.filter((v) => rows.some((r) => priceMap[v]?.[r.key] != null));
+});
+
+const visibleVendorColors = computed(() =>
+	visibleVendors.value.map((k) => vendorColor(catalog.vendorKeys, k)),
 );
 
 const savedProducts = localStorage.getItem(SEARCH_STORAGE_KEY);
@@ -133,9 +141,9 @@ const lowestVendorTotalLabel = computed(() => {
 				/>
 				<PriceTable
 					:rows="filteredRows"
-					:vendors="activeVendors"
+					:vendors="visibleVendors"
 					:price-map="catalog.priceMap"
-					:vendor-colors="activeVendorColors"
+					:vendor-colors="visibleVendorColors"
 					:page-size="11"
 				/>
 			</div>
