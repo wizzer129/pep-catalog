@@ -48,12 +48,14 @@ export const useCatalogStore = defineStore('catalog', () => {
 			for (const p of vendor.products) {
 				const raw = p.price_per_kit;
 				// price_per_kit is sometimes an object instead of a plain number:
-				// { retail, wholesale }, { USD, CAD }, or { "1_kit", "20_kit", "50_kit" }
+				// { retail, wholesale }, { USD, CAD }, or a kit-tier map
+				// like { "1_kit", "20_kit", "50_kit" } / { "10_kit", "50_kit", "100_kit" }
 				let price;
 				if (typeof raw === 'object' && raw !== null) {
 					if (raw.retail != null) price = Number(raw.retail);
 					else if (raw.USD != null) price = Number(raw.USD);
 					else if (raw['1_kit'] != null) price = Number(raw['1_kit']);
+					else if (raw['10_kit'] != null) price = Number(raw['10_kit']);
 				} else {
 					price = Number(raw);
 				}
