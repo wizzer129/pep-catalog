@@ -26,14 +26,17 @@ const ICONS = {
 			<p class="product-count">{{ vendor.products.length }} products</p>
 			<dl class="contact">
 				<template v-for="(val, field) in vendor.contact" :key="field">
-					<dt>{{ ICONS[field] || '•' }} {{ field.replace(/_/g, ' ') }}</dt>
+					<dt>
+						{{ ICONS[field] || (String(field).startsWith('whatsapp') ? '💬' : '•') }}
+						{{ field.replace(/_/g, ' ') }}
+					</dt>
 					<dd>
 						<a v-if="field === 'website'" :href="val" target="_blank" rel="noopener">{{
 							val
 						}}</a>
 						<a v-else-if="field === 'email'" :href="`mailto:${val}`">{{ val }}</a>
 						<a
-							v-else-if="field === 'whatsapp' || field === 'whatsapp_telegram'"
+							v-else-if="String(field).startsWith('whatsapp')"
 							:href="`https://wa.me/${String(val).replace(/\D/g, '')}`"
 							target="_blank"
 							rel="noopener"

@@ -7899,9 +7899,12 @@
 		"name": "WanShun Peptide",
 		"region": "China",
 		"contact": {
-			"whatsapp": "+852 6729 1670",
+			"whatsapp": "Sophie +852 6729 1670",
+			"whatsapp_2": "Irene +852 4600 7964",
+			"whatsapp_3": "Luna +852 4601 9365",
+			"whatsapp_4": "Vera Li +852 6521 4961",
 			"website": "www.wanshunpeptide.com",
-			"representative": "Sophie",
+			"representative": "Sophie, Irene, Luna, Vera",
 			"payment_methods": "All Forms (CC over $1k)",
 			"shipping_time": "15-20 Days",
 			"shipping_fee": 55
@@ -10379,7 +10382,7 @@
 				"vials": 10
 			},
 			{
-				"product_name": "HGH",
+				"product_name": "HGH 191AA",
 				"nick_name": "H10",
 				"specification": "10iu*10vials",
 				"price_per_kit": 80,
@@ -10387,7 +10390,7 @@
 				"vials": 10
 			},
 			{
-				"product_name": "HGH",
+				"product_name": "HGH 191AA",
 				"nick_name": "H15",
 				"specification": "15iu*10vials",
 				"price_per_kit": 100,
@@ -10395,7 +10398,7 @@
 				"vials": 10
 			},
 			{
-				"product_name": "HGH",
+				"product_name": "HGH 191AA",
 				"nick_name": "H24",
 				"specification": "24iu*10vials",
 				"price_per_kit": 160,
@@ -10403,7 +10406,7 @@
 				"vials": 10
 			},
 			{
-				"product_name": "HGH",
+				"product_name": "HGH 191AA",
 				"nick_name": "H36",
 				"specification": "36iu*10vials",
 				"price_per_kit": 200,
@@ -12389,7 +12392,7 @@
 				"vials": 10
 			},
 			{
-				"product_name": "HGH",
+				"product_name": "HGH 191AA",
 				"nick_name": "H10",
 				"specification": "10iu*10vials",
 				"price_per_kit": 56,
@@ -12397,7 +12400,7 @@
 				"vials": 10
 			},
 			{
-				"product_name": "HGH",
+				"product_name": "HGH 191AA",
 				"nick_name": "H12",
 				"specification": "12iu*10vials",
 				"price_per_kit": 65,
@@ -12405,7 +12408,7 @@
 				"vials": 10
 			},
 			{
-				"product_name": "HGH",
+				"product_name": "HGH 191AA",
 				"nick_name": "H15",
 				"specification": "15iu*10vials",
 				"price_per_kit": 72,
@@ -12413,7 +12416,7 @@
 				"vials": 10
 			},
 			{
-				"product_name": "HGH",
+				"product_name": "HGH 191AA",
 				"nick_name": "H24",
 				"specification": "24iu*10vials",
 				"price_per_kit": 126,
@@ -12421,7 +12424,7 @@
 				"vials": 10
 			},
 			{
-				"product_name": "HGH",
+				"product_name": "HGH 191AA",
 				"nick_name": "H36",
 				"specification": "36iu*10vials",
 				"price_per_kit": 182,
@@ -12429,7 +12432,7 @@
 				"vials": 10
 			},
 			{
-				"product_name": "HGH",
+				"product_name": "HGH 191AA",
 				"nick_name": "H50",
 				"specification": "50iu*10vials",
 				"price_per_kit": 225,
