@@ -218,7 +218,7 @@ const lowestVendorTotalLabel = computed(() => {
 	width: 320px;
 	flex-shrink: 0;
 	position: sticky;
-	top: 1rem;
+	top: 4rem;
 }
 
 .mobile-order-pill-wrap,
